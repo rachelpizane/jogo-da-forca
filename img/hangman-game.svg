@@ -1,0 +1,20 @@
+<svg width="199" height="227" viewBox="0 0 199 227" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Image Hangman Game">
+<g id="hangman-2">
+<path id="left-arm" d="M124.488 103L159.527 123.23" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="right-arm" d="M159.488 123.23L194.527 103" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="left-leg" d="M133.488 189.999L159.489 159" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="right-leg" d="M159.488 159L185.488 190" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="body" d="M159.488 107V159" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<circle id="head" cx="159.488" cy="80" r="23.5" stroke="#23291F" stroke-width="9"/>
+</g>
+<g id="hangman-1">
+<path id="Line 7" d="M4.47296 222.742H194.491" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="Line 8" d="M36.4879 222L36.4879 4" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="Line 9" d="M159.488 4L36.4878 4" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="Line 12" d="M163.488 4C163.488 1.79086 161.697 0 159.488 0C157.279 0 155.488 1.79086 155.488 4L163.488 4ZM155.488 52V56H163.488V52H155.488ZM155.488 4V52H163.488V4L155.488 4Z" fill="#23291F"/>
+<path id="Line 11" d="M36.4879 4L61.4879 27" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+<path id="Line 10" d="M87.4878 4L36.4878 54" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
+</g>
+</g>
+</svg>
