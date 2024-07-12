@@ -10,26 +10,27 @@ const paises = ["Brasil", "Estados Unidos", "França", "Japão", "Austrália"];
 // Eu faço um script para funções conectadas a página??...
 // Função para traçar o título principal
 function tracarTituloPrincipal() {
-  const titulo = document.getElementById("main-title").children;
+  let  titulo = document.getElementById("main-title");
+  titulo = titulo.querySelectorAll("span");
 
-  for (let i = 0; i < titulo.length; i++) {
-    const parteTitulo = titulo[i].innerHTML;
-    titulo[i].innerHTML = "";
+  titulo.forEach(parteTitulo => {
+    const palavra = parteTitulo.innerHTML;
+    parteTitulo.innerHTML = "";
 
-    for (let j = 0; j < parteTitulo.length; j++) {
+    for (let j = 0; j < palavra.length; j++) {
       const span = document.createElement("span");
-
-      if (parteTitulo[j] == " ") {
-        span.innerHTML = parteTitulo[j];
+  
+      if (palavra[j] == " ") {
+        span.innerHTML = palavra[j];
 
       } else {
-        span.classList.add(".main-title-letter--dashed");
-        span.innerHTML = parteTitulo[j];
-
+        span.classList.add("main-title-letter--dashed");
+        span.innerHTML = palavra[j];
+  
       }
-      titulo[i].appendChild(span);
-    }
-  }
+      parteTitulo.appendChild(span);
+    };
+  });
 }
 
 // Função para atualizar o conteúdo da página
