@@ -23,7 +23,7 @@ function tracarTituloPrincipal() {
         span.innerHTML = parteTitulo[j];
 
       } else {
-        span.classList.add("main-title-letter--tracado");
+        span.classList.add(".main-title-letter--dashed");
         span.innerHTML = parteTitulo[j];
 
       }

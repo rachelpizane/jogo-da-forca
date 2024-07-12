@@ -22,7 +22,7 @@
   gap: .35rem;
 }
 
-.main-title-letter--tracado {
+.main-title-letter--dashed {
   text-align: center;
   border-bottom: .4rem solid black;
   padding: 0 .12rem;
