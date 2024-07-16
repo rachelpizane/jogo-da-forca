@@ -16,7 +16,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 /* Estilos gerais */
@@ -25,8 +25,7 @@ body {
   background-color: var(--main-bg-color);
 }
 
-/*  Estilos Home Page */
-.home-page {
+.home-page, .game-page {
   padding: 1.5rem 1.25rem;
   min-height: 100dvh;
   display: grid;
@@ -35,6 +34,7 @@ body {
   align-items: center;
 }
 
+/*  Estilos Home Page */
 .home-page__main-title{
   font-family: "Luckiest Guy", cursive;
   font-size: 3rem;
@@ -69,11 +69,18 @@ body {
   align-items: center;
   justify-content: center;
   gap: .5rem;
-  transition: .1s;
+  transition: background-color .1s;
 }
 
 .home-page__button:hover {
   background-color: var(--hover-color);
 }
 
+/*  Estilos Game Page */
 
+/* Estilos Javascript */
+
+/* Classe para esconder as seções */
+.page--display {
+  display: none;
+}

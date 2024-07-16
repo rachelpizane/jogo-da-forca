@@ -33,7 +33,18 @@ function tracarTituloPrincipal() {
   });
 }
 
+
+function iniciarJogo(){
+  const homePage = document.getElementById("home-page");
+  const gamePage = document.getElementById("game-page");
+
+  homePage.classList.toggle("page--display");
+  gamePage.classList.toggle("page--display");
+}
+
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function(){
   tracarTituloPrincipal()
+
+  document.getElementById("btn").addEventListener("click", iniciarJogo)
 })
