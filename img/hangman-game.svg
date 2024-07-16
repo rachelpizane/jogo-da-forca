@@ -1,6 +1,6 @@
 <svg width="199" height="227" viewBox="0 0 199 227" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Image Hangman Game">
-<g id="hangman-2">
+<g id="hangman-2" >
 <path id="left-arm" d="M124.488 103L159.527 123.23" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
 <path id="right-arm" d="M159.488 123.23L194.527 103" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
 <path id="left-leg" d="M133.488 189.999L159.489 159" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>

@@ -1,25 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+/* Variáveis globais */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Playpen+Sans:wght@100..800&display=swap');
 
+:root {
+  --main-bg-color: #FEFBF4;
+  --primary-color: #5EAD37;
+  --secondary-color: #23291F;
+  --color-light: #fff;
+  --color-dark: #000000;
+  --shadow-color: #C7C2C2;
+  --hover-color: #51972f;
+}
+
+/* Reset de estilos e configurações globais */
 *{
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
+/* Estilos gerais */
+body {
+  font-family: "Playpen Sans", cursive;
+  background-color: var(--main-bg-color);
+}
+
+/*  Estilos Home Page */
 .home-page {
   padding: 1.5rem 1.25rem;
   min-height: 100dvh;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .home-page__main-title{
   font-family: "Luckiest Guy", cursive;
-  font-size: 2.5rem;
-  /* letter-spacing: .3rem; */
+  font-size: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .35rem;
+  gap: .75rem;
 }
 
 .main-title-letter--dashed {
@@ -30,3 +52,28 @@
   display: inline-flex;
   line-height: 1;
 }
+
+.home-page__button {
+  min-width: 100%;
+  font-size: 2.5rem;
+  padding: .75rem;
+  font-family: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1.25rem;
+  border: .25rem solid var(--color-dark);
+  background-color: var(--primary-color);
+  color: var(--color-light);
+  box-shadow: .25rem .25rem .75rem var(--shadow-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  transition: .1s;
+}
+
+.home-page__button:hover {
+  background-color: var(--hover-color);
+}
+
+
