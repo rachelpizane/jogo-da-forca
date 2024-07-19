@@ -14,7 +14,7 @@ Em andamento
 
 ## 3. Link 🔗
 
-- Live Site URL: Em construção 🛠️
+- Live Site URL: [GitHub Page - Jogo da Forca](https://rachelpizane.github.io/jogo-da-forca/)
 <br>
 
 ## 4. Screenshot 📸
