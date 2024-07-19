@@ -1,0 +1,108 @@
+/* Variáveis globais */
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Playpen+Sans:wght@100..800&display=swap');
+
+:root {
+  --main-bg-color: #FEFBF4;
+  --primary-color: #5EAD37;
+  --secondary-color: #23291F;
+  --color-light: #fff;
+  --color-dark: #000000;
+  --shadow-color: #C7C2C2;
+  --hover-color: #51972f;
+}
+
+/* Reset de estilos e configurações globais */
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+/* Estilos gerais */
+body {
+  font-family: "Playpen Sans", cursive;
+  background-color: var(--main-bg-color);
+}
+
+main {
+  position: relative;
+}
+
+.home-page, .game-page {
+  padding: 1.5rem 1.25rem;
+  min-height: 100dvh;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: .3rem solid var(--color-dark);
+}
+
+/*  Estilos Home Page */
+.home-page {
+  z-index: 3;
+  transition: transform .3s;
+}
+
+.home-page__main-title{
+  font-family: "Luckiest Guy", cursive;
+  font-size: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+}
+
+.main-title-letter--dashed {
+  text-align: center;
+  border-bottom: .4rem solid black;
+  padding: 0 .12rem;
+  margin: 0 .2rem;
+  display: inline-flex;
+  line-height: 1;
+}
+
+.home-page__button {
+  min-width: 100%;
+  font-size: 2.5rem;
+  padding: .75rem;
+  font-family: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1.25rem;
+  border: .25rem solid var(--color-dark);
+  background-color: var(--primary-color);
+  color: var(--color-light);
+  box-shadow: .25rem .25rem .75rem var(--shadow-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  transition: background-color .1s;
+}
+
+.home-page__button:hover {
+  background-color: var(--hover-color);
+}
+
+/*  Estilos Game Page */
+.game-page {
+  z-index: 2;
+}
+
+/* Animações */
+.hide-page {
+  transform: translateY(-100%);
+}
+
+/* Estilos Javascript */
+
+/* Classe para esconder as seções */
+/* .page--display {
+  display: none;
+} */
