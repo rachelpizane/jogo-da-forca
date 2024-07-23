@@ -1,5 +1,5 @@
 /* Variáveis globais */
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Playpen+Sans:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Playpen+Sans:wght@100..800&family=Krub:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   --main-bg-color: #FEFBF4;
@@ -9,6 +9,7 @@
   --color-dark: #000000;
   --shadow-color: #C7C2C2;
   --hover-color: #51972f;
+  --transparent-primary-color: #5fae3759;
 }
 
 /* Reset de estilos e configurações globais */
@@ -16,13 +17,14 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* Estilos gerais */
 body {
   font-family: "Playpen Sans", cursive;
   background-color: var(--main-bg-color);
+  cursor: default;
 }
 
 main {
@@ -31,22 +33,43 @@ main {
 
 .home-page, .game-page {
   padding: 1.5rem 1.25rem;
-  min-height: 100dvh;
+  height: 100dvh;
+  max-width: 100dvw;
   display: grid;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   border: .3rem solid var(--color-dark);
+  background-color: var(--main-bg-color);
+}
+
+.home-page__button, .game-page__restart-button {
+  padding: .75rem;
+  font-family: inherit;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 1.25rem;
+  border: .15rem solid var(--color-dark);
+  background-color: var(--primary-color);
+  color: var(--color-light);
+  box-shadow: .25rem .25rem .75rem var(--shadow-color);
+  transition: background-color .1s;
+  cursor: pointer;
+}
+
+.home-page__button:hover, .game-page__restart-button:hover {
+  background-color: var(--hover-color);
 }
 
 /*  Estilos Home Page */
 .home-page {
   z-index: 3;
   transition: transform .3s;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  transform: translateY(-100%);
 }
 
 .home-page__main-title{
@@ -70,29 +93,130 @@ main {
 .home-page__button {
   min-width: 100%;
   font-size: 2.5rem;
-  padding: .75rem;
-  font-family: inherit;
-  text-transform: uppercase;
-  font-weight: 600;
-  border-radius: 1.25rem;
   border: .25rem solid var(--color-dark);
-  background-color: var(--primary-color);
-  color: var(--color-light);
-  box-shadow: .25rem .25rem .75rem var(--shadow-color);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .5rem;
-  transition: background-color .1s;
-}
-
-.home-page__button:hover {
-  background-color: var(--hover-color);
 }
 
 /*  Estilos Game Page */
+.game-page__try, .game-page__subtitle {
+  font-family: "Krub", sans-serif;;
+}
+
 .game-page {
   z-index: 2;
+  grid-template-rows:  repeat(5, min-content);
+  align-content: space-between;
+}
+
+.row1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-page__restart-button{
+  padding: .5rem .8rem;
+  border-radius: .9rem;
+  letter-spacing: .05rem;
+}
+
+.game-page__try {
+  display: flex;
+  font-size: 1.15rem;
+}
+
+.game-page__try span {
+  text-align: center;
+  min-width: 1.5rem;
+}
+
+.game-page__subtitle {
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: .9;
+  padding-bottom: .2rem;
+}
+
+.game-page__tip-container{
+  background-color: var(--transparent-primary-color);
+  padding: .65rem;
+  text-align: center;
+  border-radius: .4rem;
+}
+
+.game-page__tip {
+  text-transform: uppercase;
+  font-size: 1.9rem;
+  line-height: .9;
+}
+
+.row3 {
+  text-align: center;
+}
+
+.game-page__hangman-game {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.game-page__word-container{
+  font-family: "Luckiest Guy", cursive;
+  font-size: 3rem;
+  display: flex;
+  gap: .75rem;
+  min-height: 2.5rem;
+}
+
+.game-page__letter-container {
+  flex-grow: 1;
+  text-align: center;
+  max-width: 5rem;
+  border-bottom: .32rem solid transparent;
+  position: relative;
+}
+
+.game-page__letter-container::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.32rem;
+  min-height: .32rem;
+  background-color: var(--color-dark);
+  border-radius: .5rem;
+}
+
+.game-page__keyboard{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .4rem; 
+  align-items: center;
+  justify-content: space-between;
+  min-height: fit-content;
+  margin-top: .5rem;
+}
+
+.game-page__keyboard-letter {
+  min-width: 1rem;
+  padding: .5rem .4rem;
+  text-align: center;
+  border-radius: .25rem;
+  font-size: .9rem;
+  background-color: #E4E3E3;
+  color: #676565;
+  box-sizing: content-box;
+  cursor: pointer;
+  border: .12rem solid transparent;
+  transition: border .1s linear
+}
+
+.game-page__keyboard-letter:hover {
+  border: .12rem solid #676565;
 }
 
 /* Animações */
