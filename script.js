@@ -64,6 +64,22 @@ function gerarTracoPalavraEscolhida(palavraEscolhida) {
   }
 }
 
+// Função para gerar o teclado virtual
+function gerarTecladoVirtural(){
+  const letras = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ç'
+  ];
+
+  const teclado = document.getElementById("keyboard");
+
+  letras.forEach(letra => {
+    const containerLetra = document.createElement("span");
+    containerLetra.classList.add("game-page__keyboard-letter");
+    containerLetra.innerHTML = letra;
+    teclado.appendChild(containerLetra)
+  })
+}
+
 // Função para iniciar o jogo
 function iniciarJogo() {
   const homePage = document.getElementById("home-page");
@@ -79,4 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
   tracarTituloPrincipal();
 
   document.getElementById("btn").addEventListener("click", iniciarJogo);
+
+  gerarTecladoVirtural()
 });
