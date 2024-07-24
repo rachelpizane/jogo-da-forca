@@ -9,8 +9,7 @@ palavras.push(animais, frutas, paises);
 
 // Função para traçar o título principal
 function tracarTituloPrincipal() {
-  let titulo = document.getElementById("main-title");
-  titulo = titulo.querySelectorAll("span");
+  let titulo = document.getElementById("main-title").querySelectorAll("span");
 
   titulo.forEach((parteTitulo) => {
     const palavra = parteTitulo.innerHTML;
@@ -49,19 +48,23 @@ function gerarPalavraEscolhida() {
   return palavras[indexTema][indexPalavra];
 }
 
-// Em andamento:
+// Função para gerar os traços da palavra escolhida
 function gerarTracoPalavraEscolhida(palavraEscolhida) {
-  const container = document.getElementById("container");
+  palavraEscolhida = "Estados Unidos"
 
-  for (let i = 0; i < palavraEscolhida.length; i++) {
-    const span = document.createElement("span");
+  const wordContainer = document.getElementById("word-container");
 
-    if(palavraEscolhida[i] != ""){
-      span.classList.add("container--dashed");
-    } 
-    container.appendChild(span);
+  palavraEscolhida.split("").forEach(caracter => {
+    const letterContainer = document.createElement("span");
 
-  }
+    if(caracter !== " "){
+      letterContainer.classList.add("game-page__letter-container")
+    } else {
+      letterContainer.classList.add("game-page__null-container")
+    }
+
+    wordContainer.appendChild(letterContainer)
+  })
 }
 
 // Função para gerar o teclado virtual
