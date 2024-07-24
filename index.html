@@ -9,6 +9,7 @@
 </head>
 <body>
   <main>
+    <!-- Página inicial -->
     <section id="home-page" class="home-page">
       <h1 id="main-title" class="home-page__main-title">
         <span>Jogo</span> 
@@ -23,22 +24,23 @@
       </button>
     </section>
 
+    <!-- Página do jogo -->
     <section id="game-page" class="game-page">
-      <div class="game-page__row row1">
+      <header class="game-page__header">
         <button class="game-page__restart-button">Recomeçar</button>
 
         <p class="game-page__try">Tentativa: <span>6</span></p>
-      </div>
+      </header>
       
-      <div class="game-page__row row2"> 
+      <div class="game-page__tip"> 
         <h2 class="game-page__subtitle">Dica</h2>
 
         <div class="game-page__tip-container">
-          <p class="game-page__tip">Fruta</p>
+          <p class="game-page__tip-word">Fruta</p>
         </div>
       </div>
 
-      <div class="game-page__row row3">
+      <div class="game-page__image">
         <img class="game-page__hangman-game" src="img/hangman-game.svg" alt="hangman">
       </div>
       
@@ -53,6 +55,7 @@
       </div>
 
       <div id="keyboard" class="game-page__keyboard">
+        <!-- Teclado virtual será inserido aqui -->
       </div>
     </section>
   </main>
