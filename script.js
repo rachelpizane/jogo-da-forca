@@ -1,11 +1,14 @@
 const temas = ["Animais", "Frutas", "Países"];
 
 const animais = ["cachorro", "gato", "elefante", "girafa", "tigre"];
-const frutas = ["maçã", "banana", "laranja", "uva", "morango"];
-const paises = ["Brasil", "Estados Unidos", "França", "Japão", "Austrália"];
+const frutas = ["maça", "banana", "laranja", "uva", "morango"];
+const paises = ["brasil", "estados unidos", "frança", "japao", "australia"];
 
 const palavras = [];
 palavras.push(animais, frutas, paises);
+
+let palavraEscolhida;
+let palavraPreenchida;
 
 // Função para traçar o título principal
 function tracarTituloPrincipal() {
@@ -44,21 +47,52 @@ function gerarTema() {
 function gerarPalavraEscolhida() {
   const indexTema = gerarTema();
   const indexPalavra = gerarNumeroAleatorio(palavras[indexTema].length);
-  console.log(palavras[indexTema][indexPalavra])
-  return palavras[indexTema][indexPalavra];
+
+  console.log(temas[indexTema]) //Auxilio, excluir depois
+  console.log(palavras[indexTema][indexPalavra]) //Auxilio, excluir depois
+
+  palavraEscolhida = palavras[indexTema][indexPalavra].split("");
 }
 
 // Função para gerar os traços da palavra escolhida
-function gerarTracoPalavraEscolhida(palavraEscolhida) {
-  palavraEscolhida = "Estados Unidos"
+function gerarTracoPalavraEscolhida(){
+  return palavraEscolhida.map(letra => {
+    if(letra !== " "){
+      return null;
+    }
+    return letra;
+  });
+}
 
+// Função para validar a tecla selecionada
+function validarTeclaSelecionada(teclaSelecionada){
+  if(palavraEscolhida.includes(teclaSelecionada)){
+    console.log("OK")  //Auxilio, excluir depois
+
+    palavraEscolhida.forEach((letra, index) => {
+      if(letra === teclaSelecionada){
+        palavraPreenchida[index] = letra;
+      }
+    })
+    console.log(palavraPreenchida);  //Auxilio, excluir depois
+    atualizarTracoPalavraEscolhida() 
+  } else{
+    console.log("Errou...")  //Auxilio, excluir depois
+  }
+}
+
+// Função para gerar os traços da palavra escolhida
+function atualizarTracoPalavraEscolhida() {
   const wordContainer = document.getElementById("word-container");
+  wordContainer.innerHTML = "";
 
-  palavraEscolhida.split("").forEach(caracter => {
+  palavraPreenchida.forEach(caracter => {
     const letterContainer = document.createElement("span");
+    letterContainer.innerHTML = caracter;
 
     if(caracter !== " "){
       letterContainer.classList.add("game-page__letter-container")
+
     } else {
       letterContainer.classList.add("game-page__null-container")
     }
@@ -68,12 +102,10 @@ function gerarTracoPalavraEscolhida(palavraEscolhida) {
 }
 
 // Função para gerar o teclado virtual
-function gerarTecladoVirtural(){
+function gerarTecladoVirtual(teclado){
   const letras = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ç'
-  ];
-
-  const teclado = document.getElementById("keyboard");
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ç'
+];
 
   letras.forEach(letra => {
     const containerLetra = document.createElement("span");
@@ -83,21 +115,40 @@ function gerarTecladoVirtural(){
   })
 }
 
+// Função para capturar a tecla selecionada
+function capturarTecla(teclado){
+  const teclas = teclado.querySelectorAll("span");
+  let teclaSelecionada;
+
+  teclas.forEach(tecla => {
+    tecla.addEventListener("click", (e)=> {
+      teclaSelecionada = e.target.innerHTML;
+
+      validarTeclaSelecionada(teclaSelecionada)
+    });
+  });
+}
+
 // Função para iniciar o jogo
 function iniciarJogo() {
   const homePage = document.getElementById("home-page");
   const gamePage = document.getElementById("game-page");
 
   homePage.classList.toggle("hide-page"); // Esconde a página inicial
-  const palavraEscolhida = gerarPalavraEscolhida(); // Gera uma palavra aleatória
-  gerarTracoPalavraEscolhida(palavraEscolhida);
+
+  gerarPalavraEscolhida(); 
+  palavraPreenchida = gerarTracoPalavraEscolhida();
+  atualizarTracoPalavraEscolhida()
 }
 
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function () {
+  const teclado = document.getElementById("keyboard");
+
   tracarTituloPrincipal();
 
   document.getElementById("btn").addEventListener("click", iniciarJogo);
 
-  gerarTecladoVirtural()
+  gerarTecladoVirtual(teclado) 
+  capturarTecla(teclado);
 });

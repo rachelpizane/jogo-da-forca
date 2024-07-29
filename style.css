@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* Estilos gerais */
@@ -65,7 +65,7 @@ main {
 /*  Estilos Home Page */
 .home-page {
   z-index: 3;
-  transition: transform .3s;
+  transition: transform .4s;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -130,26 +130,26 @@ main {
 
 .game-page__try span {
   text-align: center;
-  min-width: 1.5rem;
+  min-width: 1.3rem;
 }
 
 .game-page__subtitle {
   font-weight: normal;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: .9;
-  padding-bottom: .2rem;
+  padding-bottom: .1rem;
 }
 
 .game-page__tip-container{
   background-color: var(--transparent-primary-color);
-  padding: .65rem;
+  padding: .6rem;
   text-align: center;
   border-radius: .4rem;
 }
 
 .game-page__tip-word {
   text-transform: uppercase;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   line-height: .9;
   font-weight: normal;
 }
@@ -159,7 +159,7 @@ main {
 }
 
 .game-page__hangman-game {
-  max-width: 100%;
+  max-width: 75%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -169,16 +169,25 @@ main {
   font-family: "Luckiest Guy", cursive, sans-serif;
   font-size: 3rem;
   display: flex;
-  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .3rem .6rem;
   min-height: 2.5rem;
 }
 
-.game-page__letter-container, .game-page__null-container {
-  flex-grow: 1;
+.game-page__letter-container {
+  /* flex-grow: 1; */
   text-align: center;
-  max-width: 5rem;
+  min-height: 2.5rem;
+  min-width: 2.4rem;
   border-bottom: .32rem solid transparent;
   position: relative;
+}
+
+.game-page__null-container {
+  display: block;
+  flex-basis: 100%;
+  max-width: 100%;
 }
 
 .game-page__letter-container::after{
@@ -187,19 +196,20 @@ main {
   left: 0;
   right: 0;
   bottom: -.32rem;
-  min-height: .32rem;
+  height: .32rem;
   background-color: var(--color-dark);
   border-radius: .5rem;
 }
 
 .game-page__keyboard{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: .5rem .4rem; 
+  gap: .4rem .2rem; 
   align-items: center;
-  justify-content: space-between;
   min-height: fit-content;
   margin-top: .5rem;
+  text-transform: uppercase;
 }
 
 .game-page__keyboard-letter {
