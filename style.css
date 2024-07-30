@@ -223,10 +223,10 @@ main {
   box-sizing: content-box;
   cursor: pointer;
   border: .12rem solid transparent;
-  transition: border .1s linear
+  transition: border .1s linear, background-color .2s ease
 }
 
-.game-page__keyboard-letter:hover {
+.game-page__keyboard-letter:hover:not(.keyboard-letter--disabled) {
   border: .12rem solid #676565;
 }
 
@@ -238,9 +238,8 @@ main {
 .hangman-game--visibility {
   visibility: hidden;
 }
-/* Estilos Javascript */
 
-/* Classe para esconder as seções */
-/* .page--display {
-  display: none;
-} */
+.keyboard-letter--disabled {
+  cursor: default;
+  background-color: #bbb8b8
+}

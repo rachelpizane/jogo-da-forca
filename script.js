@@ -35,9 +35,11 @@ function tracarTituloPrincipal() {
 }
 
 // Função para inserir a imagem do hangman
-function inserirImagemHangman(){
+function iniciarImagemHangman(){
   const hangmanContainer = document.getElementById("hangman-container")
   
+  hangmanContainer.innerHTML = "";
+
   hangmanContainer.innerHTML = `
     <svg width="199" height="227" viewBox="0 0 199 227" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Image Hangman Game">
@@ -63,7 +65,6 @@ function inserirImagemHangman(){
   const hangman = hangmanContainer.querySelectorAll(".game-page__hangman-game");
  
   hangman.forEach(parte => {
-    console.log(parte)
     parte.classList.toggle("hangman-game--visibility")
   })
 }
@@ -162,15 +163,21 @@ function atualizarTracoPalavraEscolhida() {
 }
 
 // Função para gerar o teclado virtual
-function gerarTecladoVirtual(teclado){
+function gerarTecladoVirtual(){
+  const teclado = document.getElementById("keyboard");
+  teclado.innerHTML = "";
+
   const letras = [
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ç'
-];
+  ];
 
   letras.forEach(letra => {
-    const containerLetra = document.createElement("span");
+    const containerLetra = document.createElement("button");
+
     containerLetra.classList.add("game-page__keyboard-letter");
     containerLetra.innerHTML = letra;
+    containerLetra.removeAttribute("disabled")
+
     teclado.appendChild(containerLetra)
   })
 
@@ -179,23 +186,35 @@ function gerarTecladoVirtual(teclado){
 
 // Função para capturar a tecla selecionada
 function capturarTecla(teclado){
-  const teclas = teclado.querySelectorAll("span");
-  let teclaSelecionada;
+  const teclas = teclado.querySelectorAll("button");
 
   teclas.forEach(tecla => {
-    tecla.addEventListener("click", (e)=> {
-      teclaSelecionada = e.target.innerHTML;
+    tecla.addEventListener("click", (e) => {
+      let teclaSelecionada = tecla.innerHTML;
+
       validarTeclaSelecionada(teclaSelecionada)
+      tecla.setAttribute("disabled", "true") // Desabilita a tecla selecionada
+      tecla.classList.toggle("keyboard-letter--disabled")
     });
   });
+  
+}
+
+// Função para atualizar a página do jogo
+function atualizarPagina(){
+  const homePage = document.getElementById("home-page");
+
+  if(!homePage.classList.contains("hide-page")){
+    homePage.classList.toggle("hide-page"); // Esconde a página inicial
+  }
+
+  gerarTecladoVirtual();
+  iniciarImagemHangman();
 }
 
 // Função para iniciar o jogo
-function iniciarJogo() {
-  const homePage = document.getElementById("home-page");
-  const gamePage = document.getElementById("game-page");
-
-  homePage.classList.toggle("hide-page"); // Esconde a página inicial
+function iniciarJogo(){
+  atualizarPagina()
 
   tentativas = 6;
   atualizarPlacar() 
@@ -207,14 +226,9 @@ function iniciarJogo() {
 
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function () {
-  const teclado = document.getElementById("keyboard");
-
   tracarTituloPrincipal();
 
-  document.getElementById("btn").addEventListener("click", iniciarJogo);
+  document.getElementById("start-btn").addEventListener("click", iniciarJogo);
 
-  gerarTecladoVirtual(teclado) 
-  
-
-  inserirImagemHangman();
+  document.getElementById("restart-btn").addEventListener("click", iniciarJogo);
 });
