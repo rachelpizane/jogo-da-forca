@@ -7,6 +7,7 @@ const paises = ["brasil", "estados unidos", "frança", "japao", "australia"];
 const palavras = [];
 palavras.push(animais, frutas, paises);
 
+let temaEscolhido;
 let palavraEscolhida;
 let palavraPreenchida;
 let tentativas;
@@ -61,16 +62,32 @@ function inserirImagemHangman(){
 
   const hangman = hangmanContainer.querySelectorAll(".game-page__hangman-game");
  
-  hangman.forEach(part => {
-    console.log(part)
-    part.classList.toggle("hangman-game--visibility")
+  hangman.forEach(parte => {
+    console.log(parte)
+    parte.classList.toggle("hangman-game--visibility")
   })
 }
 
-// Em andamento
+// Função para atualizar a imagem do hangman de acordo com as tentativas
 function atualizarImagemHangman(){
-  
+  const SVGElmentosID =  ["left-arm", "right-arm", "left-leg", "right-leg", "body", "head"];
+
+  const parte = document.getElementById(SVGElmentosID[tentativas - 1])
+
+  parte.classList.toggle("hangman-game--visibility")
+  tentativas--
 }
+
+// Função para atualizar o placar 
+function atualizarPlacar() {
+  document.getElementById("score").innerHTML = tentativas;
+}
+
+//Função para incluir o tema escolhido na página
+function incluirTema(){
+  document.getElementById("tip").innerHTML =  temaEscolhido;
+}
+
 // Função para gerar um número aleatório
 function gerarNumeroAleatorio(largura) {
   return Math.floor(Math.random() * largura);
@@ -78,7 +95,9 @@ function gerarNumeroAleatorio(largura) {
 
 // Função para gerar um tema aleatório
 function gerarTema() {
-  return gerarNumeroAleatorio(temas.length);
+  const indexTema = gerarNumeroAleatorio(temas.length)
+  temaEscolhido = temas[indexTema] 
+  return indexTema;
 }
 
 /* Não to satisfeita, acho que é possivel transformar isso em um objeto, pensar nisso.*/
@@ -118,6 +137,7 @@ function validarTeclaSelecionada(teclaSelecionada){
   } else{
     console.log("Errou...")  //Auxilio, excluir depois
     atualizarImagemHangman();
+    atualizarPlacar()
   }
 }
 
@@ -165,7 +185,6 @@ function capturarTecla(teclado){
   teclas.forEach(tecla => {
     tecla.addEventListener("click", (e)=> {
       teclaSelecionada = e.target.innerHTML;
-
       validarTeclaSelecionada(teclaSelecionada)
     });
   });
@@ -179,9 +198,11 @@ function iniciarJogo() {
   homePage.classList.toggle("hide-page"); // Esconde a página inicial
 
   tentativas = 6;
+  atualizarPlacar() 
   gerarPalavraEscolhida(); // Gera a palavra escolhida aleatoriamente
   palavraPreenchida = gerarTracoPalavraEscolhida(); // Inicializa com a palavra vazia
   atualizarTracoPalavraEscolhida() 
+  incluirTema()
 }
 
 // Função para atualizar o conteúdo da página
