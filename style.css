@@ -235,6 +235,9 @@ main {
   transform: translateY(-100%);
 }
 
+.hangman-game--visibility {
+  visibility: hidden;
+}
 /* Estilos Javascript */
 
 /* Classe para esconder as seções */
