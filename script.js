@@ -101,7 +101,6 @@ function gerarTema() {
   return indexTema;
 }
 
-/* Não to satisfeita, acho que é possivel transformar isso em um objeto, pensar nisso.*/
 // Função para gerar uma palavra aleatória
 function gerarPalavraEscolhida() {
   const indexTema = gerarTema(); //Gera um número aleatório para escolher o tema

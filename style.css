@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 /* Estilos gerais */
@@ -109,6 +109,7 @@ main {
   z-index: 2;
   grid-template-rows:  repeat(5, min-content);
   align-content: space-between;
+  text-transform: uppercase;
 }
 
 .game-page__header{
@@ -118,7 +119,7 @@ main {
 }
 
 .game-page__restart-button{
-  padding: .5rem .8rem;
+  padding: .45rem .75rem;
   border-radius: .9rem;
   letter-spacing: .05rem;
 }
@@ -126,6 +127,7 @@ main {
 .game-page__try {
   display: flex;
   font-size: 1.15rem;
+  text-transform:capitalize;
 }
 
 .game-page__try span {
@@ -148,7 +150,6 @@ main {
 }
 
 .game-page__tip-word {
-  text-transform: uppercase;
   font-size: 1.5rem;
   line-height: .9;
   font-weight: normal;
@@ -166,21 +167,22 @@ main {
 }
 
 .game-page__word-container{
-  font-family: "Luckiest Guy", cursive, sans-serif;
-  font-size: 3rem;
+  font-size: 1.75rem;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: .3rem .6rem;
-  min-height: 2.5rem;
+  height: 2.5rem;
 }
 
 .game-page__letter-container {
   /* flex-grow: 1; */
-  text-align: center;
-  min-height: 2.5rem;
-  min-width: 2.4rem;
-  border-bottom: .32rem solid transparent;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 2rem;
+  max-width: 2.4rem;
+  min-width: 2rem;
+  border-bottom: .32rem solid green;
   position: relative;
 }
 
@@ -209,7 +211,7 @@ main {
   align-items: center;
   min-height: fit-content;
   margin-top: .5rem;
-  text-transform: uppercase;
+  
 }
 
 .game-page__keyboard-letter {
@@ -217,6 +219,8 @@ main {
   padding: .5rem .4rem;
   text-align: center;
   border-radius: .25rem;
+  font-family: inherit;
+  text-transform: inherit;
   font-size: .9rem;
   background-color: #E4E3E3;
   color: #676565;
