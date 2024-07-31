@@ -114,6 +114,7 @@ function gerarPalavraEscolhida() {
 
 // Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
 function gerarTracoPalavraEscolhida(){
+  // palavraEscolhida = palavras[2][1].split("")
   return palavraEscolhida.map(letra => {
     if(letra !== " "){
       return null;
