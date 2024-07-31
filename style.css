@@ -44,7 +44,7 @@ main {
   background-color: var(--main-bg-color);
 }
 
-.home-page__button, .game-page__restart-button {
+.home-page__start-button, .game-page__restart-button {
   padding: .75rem;
   font-family: inherit;
   text-transform: uppercase;
@@ -58,7 +58,7 @@ main {
   cursor: pointer;
 }
 
-.home-page__button:hover, .game-page__restart-button:hover {
+.home-page__start-button:hover, .game-page__restart-button:hover {
   background-color: var(--hover-color);
 }
 
@@ -90,7 +90,7 @@ main {
   line-height: 1;
 }
 
-.home-page__button {
+.home-page__start-button {
   min-width: 100%;
   font-size: 2.5rem;
   border: .25rem solid var(--color-dark);
@@ -184,7 +184,7 @@ main {
   height: 2rem;
   max-width: 2.4rem;
   min-width: 2rem;
-  border-bottom: .32rem solid green;
+  border-bottom: .32rem solid transparent;
   position: relative;
 }
 
@@ -214,7 +214,7 @@ main {
   min-height: fit-content;
 }
 
-.game-page__keyboard-letter {
+.game-page__keyboard-key {
   min-width: 1rem;
   padding: .5rem .4rem;
   text-align: center;
@@ -230,12 +230,12 @@ main {
   transition: border .1s linear, background-color .2s ease
 }
 
-.game-page__keyboard-letter:hover:not(.keyboard-letter--disabled) {
+.game-page__keyboard-key:hover:not(.keyboard-key--disabled) {
   border: .12rem solid #676565;
 }
 
 /* Animações */
-.hide-page {
+.page--hidden {
   transform: translateY(-100%);
 }
 
@@ -243,7 +243,7 @@ main {
   visibility: hidden;
 }
 
-.keyboard-letter--disabled {
+.keyboard-key--disabled {
   cursor: default;
   background-color: #bbb8b8
 }

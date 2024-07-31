@@ -114,7 +114,6 @@ function gerarPalavraEscolhida() {
 
 // Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
 function gerarTracoPalavraEscolhida(){
-  // palavraEscolhida = palavras[2][1].split("")
   return palavraEscolhida.map(letra => {
     if(letra !== " "){
       return null;
@@ -174,7 +173,7 @@ function gerarTecladoVirtual(){
   letras.forEach(letra => {
     const containerLetra = document.createElement("button");
 
-    containerLetra.classList.add("game-page__keyboard-letter");
+    containerLetra.classList.add("game-page__keyboard-key");
     containerLetra.innerHTML = letra;
     containerLetra.removeAttribute("disabled")
 
@@ -204,8 +203,8 @@ function capturarTecla(teclado){
 function atualizarPagina(){
   const homePage = document.getElementById("home-page");
 
-  if(!homePage.classList.contains("hide-page")){
-    homePage.classList.toggle("hide-page"); // Esconde a página inicial
+  if(!homePage.classList.contains("page--hidden")){
+    homePage.classList.toggle("page--hidden"); // Esconde a página inicial
   }
 
   gerarTecladoVirtual();
