@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 /* Estilos gerais */
@@ -29,22 +29,27 @@ body {
 
 main {
   position: relative;
+  display: grid;
+  justify-items: center;
 }
 
-.home-page, .game-page {
-  padding: 1.5rem 1.25rem;
-  height: 100dvh;
-  max-width: 100dvw;
-  display: grid;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.home-page, .game-page, .game-message__card {
   border: .3rem solid var(--color-dark);
   background-color: var(--main-bg-color);
 }
 
-.home-page__start-button, .game-page__restart-button {
+.home-page, .game-page, .game-message {
+  padding: 1.5rem 1.25rem;
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  max-width: 100dvw;
+}
+
+.home-page__start-button, .game-page__restart-button , .game-message__restart-button {
   padding: .75rem;
   font-family: inherit;
   text-transform: uppercase;
@@ -246,4 +251,65 @@ main {
 .keyboard-key--disabled {
   cursor: default;
   background-color: #bbb8b8
+}
+
+/* Estilos Game Message */
+.game-message{
+  z-index: 4;
+  background-color: #000000ab;
+  place-content: center;
+}
+
+.game-message__card {
+  display: grid;
+  width: 350px;
+  padding: 1.5rem 2.5rem;
+  justify-items: center;
+  border-radius: 1rem;
+}
+
+.game-message__title {
+  font-family: "Luckiest Guy", cursive;
+  text-align: center;
+  line-height: 1;
+  font-size: 2.5rem;
+  font-weight: normal;
+  width: 80%;
+}
+
+.game-message__restart-button{
+  font-size: 1rem;
+  border: .2rem solid var(--color-dark);
+  border-radius: .75rem;
+  padding: .5rem .75rem;
+  min-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.game-message__home-page-button{
+  border: none;
+  background-color: transparent;
+  border-bottom: .96rem solid transparent;
+  position: relative;
+  padding: 0 .25rem;
+  cursor: pointer;
+}
+
+.game-message__home-page-button::after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -.06rem;
+  left: 0;
+  width: 100%;
+  height: .06rem;
+  background-color: var(--color-dark);
+  border-radius: .5rem;
+}
+
+.game-message__play-icon{
+  width: 1.5rem;
 }
