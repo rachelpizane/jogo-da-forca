@@ -62,14 +62,17 @@
       </div>
     </section>
 
-    <section class="game-message">
+    <section id="game-message" class="game-message page-hidden">
       <div class="game-message__card">
-        <h3 class="game-message__title">Você ganhou!</h3>
+        <h3 id="message-title" class="game-message__title">
+          <!-- O título que representa o resultado será inserido aqui -->
+        </h3>
         
         <div class="game-message__container">
-          <div class="game-message__polygon">
+          <div id="message-polygon" class="game-message__polygon">
           </div>
-          <img class="game-message__img" src="img/trophy-icon.svg" alt="trophy-icon">
+          <img id="message-img" class="game-message__img">
+          <!-- A imagem que representa o resultado será inserida aqui -->
         </div>
         
         <button class="game-message__restart-button">

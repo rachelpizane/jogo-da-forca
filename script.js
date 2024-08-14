@@ -92,13 +92,33 @@ function atualizarImagemHangman() {
 function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
+// Função para abrir a mensagem que representa o resultado
+function abrirMensagemResultado(resultado){ // Em andamento
+  const gameMessage = document.getElementById("game-message")
+  const MessageTitle = document.getElementById("message-title")
+  const MessageImg = document.getElementById("message-img")
+
+  gameMessage.classList.toggle("page-hidden")
+
+  if(resultado){
+    MessageTitle.innerText = "Você ganhou!"
+    MessageImg.src = "img/trophy-icon.svg"
+    MessageImg.alt = "trophy-icon"
+  } else {
+    MessageTitle.innerText = "Você perdeu..."
+    MessageImg.src = "??"
+    MessageImg.alt = "??"
+  }
+}
 
 // Função para verificar se o jogador ganhou ou perdeu
 function verificarStatusPontuacao() {
   if (qntdTentativas == 0) {
     console.log("Você perdeu...");
+    abrirMensagemResultado(false)
   } else if (qntdLetrasCorretas === qntdLetrasEscolhidas) {
     console.log("Você ganhou!!");
+    abrirMensagemResultado(true)
   }
 }
 //Função para incluir o tema escolhido na página

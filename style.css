@@ -254,6 +254,10 @@ main {
 }
 
 /* Estilos Game Message */
+.page-hidden {
+  display: none;
+}
+
 .game-message{
   z-index: 4;
   background-color: #000000ab;
