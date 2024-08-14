@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* Estilos gerais */
@@ -262,12 +262,12 @@ main {
 
 .game-message__card {
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
   align-content: space-between;
-  width: 350px;
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 2rem ;
   justify-items: center;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
+  border: .4rem solid var(--color-dark);
 }
 
 .game-message__title {
@@ -279,21 +279,83 @@ main {
   width: 80%;
 }
 
+.game-message__container {
+  position: relative;
+  min-width: 170px
+}
+
+.game-message__img {
+  width: 120px;
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  animation: shake .8s ease-in-out infinite;
+  transform: rotate(-7deg);
+}
+
+@keyframes shake{
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
 .game-message__polygon {
   display: grid;
   place-content: center;
-  width: 200px; /* adjust to control the size */
-  background-color: #0000002f;
+  /* width: 14rem; */
+  background-color: #94928e1a;
   position: relative;
   aspect-ratio: 1;
   clip-path: polygon(100% 50%,91.57% 55.98%,97.97% 64.09%,88.2% 67.45%,92.06% 77.03%,81.74% 77.5%,82.74% 87.79%,72.71% 85.33%,70.77% 95.48%,61.83% 90.3%,57.12% 99.49%,50% 92%,42.88% 99.49%,38.17% 90.3%,29.23% 95.48%,27.29% 85.33%,17.26% 87.79%,18.26% 77.5%,7.94% 77.03%,11.8% 67.45%,2.03% 64.09%,8.43% 55.98%,0% 50%,8.43% 44.02%,2.03% 35.91%,11.8% 32.55%,7.94% 22.97%,18.26% 22.5%,17.26% 12.21%,27.29% 14.67%,29.23% 4.52%,38.17% 9.7%,42.88% 0.51%,50% 8%,57.12% 0.51%,61.83% 9.7%,70.77% 4.52%,72.71% 14.67%,82.74% 12.21%,81.74% 22.5%,92.06% 22.97%,88.2% 32.55%,97.97% 35.91%,91.57% 44.02%);
+  animation: rotate-and-pulse 7s linear infinite;
 }
 
+@keyframes rotate-and-pulse {
+  0% {
+    transform: rotate(0deg) scale(1)
+  }
+
+  15% {
+    transform: rotate(54deg) scale(1.2)
+  }
+
+  20% {
+    transform: rotate(72deg) scale(1)
+  }
+
+  30% {
+    transform: rotate(108deg) scale(1.2)
+  }
+
+  35% {
+    transform: rotate(126deg) scale(1)
+  }
+
+  65% {
+    transform: rotate(234deg) scale(1.2)
+  }
+
+  70% {
+    transform: rotate(252deg) scale(1)
+  }
+
+  80% {
+    transform: rotate(288deg) scale(1.2)
+  }
+
+  85% {
+    transform: rotate(306deg) scale(1)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
 .game-message__restart-button{
   font-size: 1rem;
   border: .2rem solid var(--color-dark);
   border-radius: .75rem;
-  padding: .5rem .75rem;
+  padding: .75rem;
   min-width: 100%;
   display: inline-flex;
   align-items: center;
