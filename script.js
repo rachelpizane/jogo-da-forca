@@ -92,22 +92,33 @@ function atualizarImagemHangman() {
 function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
+
 // Função para abrir a mensagem que representa o resultado
 function abrirMensagemResultado(resultado){ // Em andamento
-  const gameMessage = document.getElementById("game-message")
-  const MessageTitle = document.getElementById("message-title")
-  const MessageImg = document.getElementById("message-img")
+  function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
+    //Função para adicionar elementos na mensagem de acordo com o seu resultado
+    messageTitle.innerText = tituloResultado
+    messageImg.src = imagem
+    messageImg.alt = altImagem
+    messagePolygon.classList.add(classePolygon)
+  }
 
-  gameMessage.classList.toggle("page-hidden")
+  const gameMessage = document.getElementById("game-message")
+  const messageCard = document.getElementById("message-card")
+  const messageTitle = document.getElementById("message-title")
+  const messageImg = document.getElementById("message-img")
+  const messagePolygon = document.getElementById("message-polygon")
+
+  gameMessage.classList.toggle("message--invisible")
+  gameMessage.classList.toggle("message--visible")
+  messageCard.classList.toggle("card--expand")
+  messagePolygon.classList.remove("polygon--lose", "polygon--win")
 
   if(resultado){
-    MessageTitle.innerText = "Você ganhou!"
-    MessageImg.src = "img/trophy-icon.svg"
-    MessageImg.alt = "trophy-icon"
+    adicionarElementos("Você ganhou!", "img/trophy-icon.svg", "trophy icon", "polygon-win")
+
   } else {
-    MessageTitle.innerText = "Você perdeu..."
-    MessageImg.src = "??"
-    MessageImg.alt = "??"
+    adicionarElementos("Você perdeu...", "img/sad-face-icon.svg", "sad face icon", "polygon-lose")
   }
 }
 
