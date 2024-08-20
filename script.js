@@ -94,7 +94,7 @@ function atualizarPlacar() {
 }
 
 // Função para abrir a mensagem que representa o resultado
-function abrirMensagemResultado(resultado){ // Em andamento
+function abrirMensagemResultado(resultado){
   function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
     //Função para adicionar elementos na mensagem de acordo com o seu resultado
     messageTitle.innerText = tituloResultado
@@ -110,15 +110,14 @@ function abrirMensagemResultado(resultado){ // Em andamento
   const messagePolygon = document.getElementById("message-polygon")
 
   gameMessage.classList.toggle("message--invisible")
-  gameMessage.classList.toggle("message--visible")
   messageCard.classList.toggle("card--expand")
   messagePolygon.classList.remove("polygon--lose", "polygon--win")
 
   if(resultado){
-    adicionarElementos("Você ganhou!", "img/trophy-icon.svg", "trophy icon", "polygon-win")
+    adicionarElementos("Você ganhou!", "img/trophy-icon.svg", "trophy icon", "polygon--win")
 
   } else {
-    adicionarElementos("Você perdeu...", "img/sad-face-icon.svg", "sad face icon", "polygon-lose")
+    adicionarElementos("Você perdeu...", "img/sad-face-icon.svg", "sad face icon", "polygon--lose")
   }
 }
 

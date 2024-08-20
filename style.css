@@ -258,16 +258,12 @@ main {
   z-index: 2;
   background-color: #000000ab;
   place-content: center;
-  opacity: 0;
   transition: opacity .5s linear;
 }
 
 .game-message.message--invisible {
   visibility: hidden;
-}
-
-.game-message.message--visible {
-  opacity: 1;
+  opacity: 0;
 }
 
 .game-message__card {
