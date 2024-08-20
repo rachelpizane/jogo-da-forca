@@ -93,24 +93,30 @@ function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
 
-// Função para abrir a mensagem que representa o resultado
-function abrirMensagemResultado(resultado){
+// Função para atualizar exibicação da mensagem de resultado
+function atualizarMensagemResultado(){
+  const gameMessage = document.getElementById("game-message")
+  const messageCard = document.getElementById("message-card")
+
+  gameMessage.classList.toggle("message--invisible")
+  messageCard.classList.toggle("card--expand")
+}
+
+// Função para atualizar os elementos da mensagem de acordo com o resultado
+function atualizarElementosMensagemResultado(resultado){
   function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
-    //Função para adicionar elementos na mensagem de acordo com o seu resultado
+    //Função auxiliar para adicionar os elementos 
     messageTitle.innerText = tituloResultado
     messageImg.src = imagem
     messageImg.alt = altImagem
     messagePolygon.classList.add(classePolygon)
   }
 
-  const gameMessage = document.getElementById("game-message")
-  const messageCard = document.getElementById("message-card")
   const messageTitle = document.getElementById("message-title")
   const messageImg = document.getElementById("message-img")
   const messagePolygon = document.getElementById("message-polygon")
 
-  gameMessage.classList.toggle("message--invisible")
-  messageCard.classList.toggle("card--expand")
+  atualizarMensagemResultado()
   messagePolygon.classList.remove("polygon--lose", "polygon--win")
 
   if(resultado){
@@ -124,13 +130,14 @@ function abrirMensagemResultado(resultado){
 // Função para verificar se o jogador ganhou ou perdeu
 function verificarStatusPontuacao() {
   if (qntdTentativas == 0) {
-    console.log("Você perdeu...");
-    abrirMensagemResultado(false)
+    console.log("Você perdeu..."); //Auxilio, excluir depois
+    atualizarElementosMensagemResultado(false)
   } else if (qntdLetrasCorretas === qntdLetrasEscolhidas) {
-    console.log("Você ganhou!!");
-    abrirMensagemResultado(true)
+    console.log("Você ganhou!!"); //Auxilio, excluir depois
+    atualizarElementosMensagemResultado(true)
   }
 }
+
 //Função para incluir o tema escolhido na página
 function incluirTema() {
   document.getElementById("tip").innerHTML = temaEscolhido;
@@ -278,26 +285,23 @@ function capturarTecla(teclado) {
   });
 }
 
-// Função para atualizar a página do jogo
-function atualizarPagina() {
+// Função para atualizar a exibição da pagina inicial
+function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
 
-  if (!homePage.classList.contains("page--hidden")) {
-    homePage.classList.toggle("page--hidden"); // Esconde a página inicial
-  }
-
-  gerarTecladoVirtual();
-  iniciarImagemHangman();
+  homePage.classList.toggle("page--hidden")
 }
 
 // Função para iniciar o jogo
 function iniciarJogo() {
-  atualizarPagina();
+  // atualizarPagina();
 
   qntdTentativas = 6;
   qntdLetrasEscolhidas = 0;
   qntdLetrasCorretas = 0;
 
+  gerarTecladoVirtual();
+  iniciarImagemHangman();
   atualizarPlacar();
   gerarPalavraEscolhida(); // Gera a palavra escolhida aleatoriamente
   palavraPreenchida = gerarTracoPalavraEscolhida(); // Inicializa com a palavra vazia
@@ -309,7 +313,19 @@ function iniciarJogo() {
 document.addEventListener("DOMContentLoaded", function () {
   tracarTituloPrincipal();
 
-  document.getElementById("start-btn").addEventListener("click", iniciarJogo);
+  document.getElementById("start-btn").addEventListener("click", function(){
+    atualizarPaginaInicial();
+    iniciarJogo();
+  });
 
   document.getElementById("restart-btn").addEventListener("click", iniciarJogo);
+
+  document.getElementById("message-restart-btn").addEventListener("click", () => {
+    atualizarMensagemResultado()
+    iniciarJogo();
+  });
+
+  document.getElementById("message-home-page-btn").addEventListener("click", () => {
+    atualizarPaginaInicial();
+  });
 });
