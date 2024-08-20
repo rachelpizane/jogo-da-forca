@@ -294,8 +294,6 @@ function atualizarPaginaInicial(){
 
 // Função para iniciar o jogo
 function iniciarJogo() {
-  // atualizarPagina();
-
   qntdTentativas = 6;
   qntdLetrasEscolhidas = 0;
   qntdLetrasCorretas = 0;
@@ -327,5 +325,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("message-home-page-btn").addEventListener("click", () => {
     atualizarPaginaInicial();
+    setTimeout(() => {
+      atualizarMensagemResultado()
+    },400);
   });
 });
