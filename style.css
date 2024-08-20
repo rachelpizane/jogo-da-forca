@@ -29,22 +29,27 @@ body {
 
 main {
   position: relative;
+  display: grid;
+  justify-items: center;
 }
 
-.home-page, .game-page {
-  padding: 1.5rem 1.25rem;
-  height: 100dvh;
-  max-width: 100dvw;
-  display: grid;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.home-page, .game-page, .game-message__card {
   border: .3rem solid var(--color-dark);
   background-color: var(--main-bg-color);
 }
 
-.home-page__start-button, .game-page__restart-button {
+.home-page, .game-page, .game-message {
+  padding: 1.5rem 1.25rem;
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  max-width: 100dvw;
+}
+
+.home-page__start-button, .game-page__restart-button , .game-message__restart-button {
   padding: .75rem;
   font-family: inherit;
   text-transform: uppercase;
@@ -70,6 +75,10 @@ main {
   justify-items: center;
   align-items: center;
   /* transform: translateY(-100%); */
+}
+
+.home-page.page--hidden {
+  transform: translateY(-100%);
 }
 
 .home-page__main-title{
@@ -166,6 +175,10 @@ main {
   object-position: center;
 }
 
+.game-page__hangman-game.hangman-game--visibility {
+  visibility: hidden;
+}
+
 .game-page__word-container{
   font-size: 1.5rem;
   display: flex;
@@ -230,20 +243,217 @@ main {
   transition: border .1s linear, background-color .2s ease
 }
 
+.game-page__keyboard-key.keyboard-key--disabled {
+  cursor: default;
+  background-color: #bbb8b8
+}
+
 .game-page__keyboard-key:hover:not(.keyboard-key--disabled) {
   border: .12rem solid #676565;
 }
 
-/* Animações */
-.page--hidden {
-  transform: translateY(-100%);
+
+/* Estilos Game Message */
+.game-message{
+  z-index: 2;
+  background-color: #000000ab;
+  place-content: center;
+  transition: opacity .5s linear;
 }
 
-.hangman-game--visibility {
+.game-message.message--invisible {
   visibility: hidden;
+  opacity: 0;
 }
 
-.keyboard-key--disabled {
-  cursor: default;
-  background-color: #bbb8b8
+.game-message__card {
+  display: grid;
+  gap: 1.75rem;
+  align-content: space-between;
+  padding: 1.5rem 2rem ;
+  justify-items: center;
+  border-radius: 1.5rem;
+  border: .4rem solid var(--color-dark);
+  transform: scale(0);
+}
+
+.game-message__card.card--expand {
+  animation: expand .5s ease-in-out .3s forwards;
+}
+
+@keyframes expand{
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game-message__title {
+  font-family: "Luckiest Guy", cursive;
+  text-align: center;
+  line-height: 1;
+  font-size: 2.5rem;
+  font-weight: normal;
+  width: 80%;
+}
+
+.game-message__container {
+  position: relative;
+  min-width: 170px
+}
+
+.game-message__img {
+  width: 120px;
+  position: absolute;
+  margin: auto;
+  inset: 0;
+  animation: shake .8s ease-in-out infinite;
+  transform: rotate(-7deg);
+}
+
+@keyframes shake{
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+.game-message__polygon {
+  display: grid;
+  place-content: center;
+  background-color: #94928e1a;
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.polygon--win {
+  clip-path: polygon(100% 50%,91.57% 55.98%,97.97% 64.09%,88.2% 67.45%,92.06% 77.03%,81.74% 77.5%,82.74% 87.79%,72.71% 85.33%,70.77% 95.48%,61.83% 90.3%,57.12% 99.49%,50% 92%,42.88% 99.49%,38.17% 90.3%,29.23% 95.48%,27.29% 85.33%,17.26% 87.79%,18.26% 77.5%,7.94% 77.03%,11.8% 67.45%,2.03% 64.09%,8.43% 55.98%,0% 50%,8.43% 44.02%,2.03% 35.91%,11.8% 32.55%,7.94% 22.97%,18.26% 22.5%,17.26% 12.21%,27.29% 14.67%,29.23% 4.52%,38.17% 9.7%,42.88% 0.51%,50% 8%,57.12% 0.51%,61.83% 9.7%,70.77% 4.52%,72.71% 14.67%,82.74% 12.21%,81.74% 22.5%,92.06% 22.97%,88.2% 32.55%,97.97% 35.91%,91.57% 44.02%);
+  animation: rotate-and-pulse 7s linear infinite;
+}
+
+@keyframes rotate-and-pulse {
+  0% {
+    transform: rotate(0deg) scale(1)
+  }
+
+  15% {
+    transform: rotate(54deg) scale(1.2)
+  }
+
+  20% {
+    transform: rotate(72deg) scale(1)
+  }
+
+  30% {
+    transform: rotate(108deg) scale(1.2)
+  }
+
+  35% {
+    transform: rotate(126deg) scale(1)
+  }
+
+  65% {
+    transform: rotate(234deg) scale(1.2)
+  }
+
+  70% {
+    transform: rotate(252deg) scale(1)
+  }
+
+  80% {
+    transform: rotate(288deg) scale(1.2)
+  }
+
+  85% {
+    transform: rotate(306deg) scale(1)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.polygon--lose {
+  clip-path: polygon(100% 50%,90.45% 79.39%,65.45% 97.55%,34.55% 97.55%,9.55% 79.39%,0% 50%,9.55% 20.61%,34.55% 2.45%,65.45% 2.45%,90.45% 20.61%);
+  animation: rotate-and-expand 15s ease-in-out infinite;
+}
+
+@keyframes rotate-and-expand {
+  0% {
+    transform: rotate(0deg) scale(1)
+  }
+
+  15% {
+    transform: rotate(54deg) scale(1.1)
+  }
+
+  20% {
+    transform: rotate(72deg) scale(1)
+  }
+
+  30% {
+    transform: rotate(108deg) scale(1.1)
+  }
+
+  35% {
+    transform: rotate(126deg) scale(1)
+  }
+
+  65% {
+    transform: rotate(234deg) scale(1.1)
+  }
+
+  70% {
+    transform: rotate(252deg) scale(1)
+  }
+
+  80% {
+    transform: rotate(288deg) scale(1.1)
+  }
+
+  85% {
+    transform: rotate(306deg) scale(1)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.game-message__restart-button{
+  font-size: 1rem;
+  border: .2rem solid var(--color-dark);
+  border-radius: .75rem;
+  padding: .75rem;
+  min-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.game-message__home-page-button{
+  border: none;
+  background-color: transparent;
+  border-bottom: .96rem solid transparent;
+  position: relative;
+  padding: 0 .25rem;
+  cursor: pointer;
+}
+
+.game-message__home-page-button::after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -.06rem;
+  left: 0;
+  width: 100%;
+  height: .06rem;
+  background-color: var(--color-dark);
+  border-radius: .5rem;
+}
+
+.game-message__play-icon{
+  width: 1.5rem;
 }

@@ -10,7 +10,10 @@ palavras.push(animais, frutas, paises);
 let temaEscolhido;
 let palavraEscolhida;
 let palavraPreenchida;
-let tentativas;
+
+let qntdTentativas;
+let qntdLetrasEscolhidas;
+let qntdLetrasCorretas;
 
 // Função para traçar o título principal
 function tracarTituloPrincipal() {
@@ -35,9 +38,9 @@ function tracarTituloPrincipal() {
 }
 
 // Função para inserir a imagem do hangman
-function iniciarImagemHangman(){
-  const hangmanContainer = document.getElementById("hangman-container")
-  
+function iniciarImagemHangman() {
+  const hangmanContainer = document.getElementById("hangman-container");
+
   hangmanContainer.innerHTML = "";
 
   hangmanContainer.innerHTML = `
@@ -60,33 +63,84 @@ function iniciarImagemHangman(){
     <path id="Line 10" d="M87.4878 4L36.4878 54" stroke="#23291F" stroke-width="8" stroke-linecap="round"/>
     </g>
     </g>
-    </svg>`
+    </svg>`;
 
   const hangman = hangmanContainer.querySelectorAll(".game-page__hangman-game");
- 
-  hangman.forEach(parte => {
-    parte.classList.toggle("hangman-game--visibility")
-  })
+
+  hangman.forEach((parte) => {
+    parte.classList.toggle("hangman-game--visibility");
+  });
 }
 
 // Função para atualizar a imagem do hangman de acordo com as tentativas
-function atualizarImagemHangman(){
-  const SVGElmentosID =  ["left-arm", "right-arm", "left-leg", "right-leg", "body", "head"];
+function atualizarImagemHangman() {
+  const SVGElmentosID = [
+    "left-arm",
+    "right-arm",
+    "left-leg",
+    "right-leg",
+    "body",
+    "head",
+  ];
 
-  const parte = document.getElementById(SVGElmentosID[tentativas - 1])
+  const parte = document.getElementById(SVGElmentosID[qntdTentativas]);
 
-  parte.classList.toggle("hangman-game--visibility")
-  tentativas--
+  parte.classList.toggle("hangman-game--visibility");
 }
 
-// Função para atualizar o placar 
+// Função para atualizar o placar
 function atualizarPlacar() {
-  document.getElementById("score").innerHTML = tentativas;
+  document.getElementById("score").innerHTML = qntdTentativas;
+}
+
+// Função para atualizar exibicação da mensagem de resultado
+function atualizarMensagemResultado(){
+  const gameMessage = document.getElementById("game-message")
+  const messageCard = document.getElementById("message-card")
+
+  gameMessage.classList.toggle("message--invisible")
+  messageCard.classList.toggle("card--expand")
+}
+
+// Função para atualizar os elementos da mensagem de acordo com o resultado
+function atualizarElementosMensagemResultado(resultado){
+  function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
+    //Função auxiliar para adicionar os elementos 
+    messageTitle.innerText = tituloResultado
+    messageImg.src = imagem
+    messageImg.alt = altImagem
+    messagePolygon.classList.add(classePolygon)
+  }
+
+  const messageTitle = document.getElementById("message-title")
+  const messageImg = document.getElementById("message-img")
+  const messagePolygon = document.getElementById("message-polygon")
+
+  atualizarMensagemResultado()
+  messagePolygon.classList.remove("polygon--lose", "polygon--win")
+
+  if(resultado){
+    adicionarElementos("Você ganhou!", "img/trophy-icon.svg", "trophy icon", "polygon--win")
+
+  } else {
+    adicionarElementos("Você perdeu...", "img/sad-face-icon.svg", "sad face icon", "polygon--lose")
+  }
+}
+
+// Função para verificar se o jogador ganhou ou perdeu
+function verificarStatusPontuacao() {
+  if (qntdTentativas == 0) {
+    console.log("Você perdeu..."); //Auxilio, excluir depois
+    atualizarElementosMensagemResultado(false)
+  } else if (qntdLetrasCorretas === qntdLetrasEscolhidas) {
+    console.log("Você ganhou!!"); //Auxilio, excluir depois
+    atualizarElementosMensagemResultado(true)
+  }
 }
 
 //Função para incluir o tema escolhido na página
-function incluirTema(){
-  document.getElementById("tip").innerHTML =  temaEscolhido;
+function incluirTema() {
+  document.getElementById("tip").innerHTML = temaEscolhido;
 }
 
 // Função para gerar um número aleatório
@@ -96,8 +150,8 @@ function gerarNumeroAleatorio(largura) {
 
 // Função para gerar um tema aleatório
 function gerarTema() {
-  const indexTema = gerarNumeroAleatorio(temas.length)
-  temaEscolhido = temas[indexTema] 
+  const indexTema = gerarNumeroAleatorio(temas.length);
+  temaEscolhido = temas[indexTema];
   return indexTema;
 }
 
@@ -106,39 +160,48 @@ function gerarPalavraEscolhida() {
   const indexTema = gerarTema(); //Gera um número aleatório para escolher o tema
   const indexPalavra = gerarNumeroAleatorio(palavras[indexTema].length); // Gera um número aleatório para escolher a palavra
 
-  console.log(temas[indexTema]) //Auxilio, excluir depois
-  console.log(palavras[indexTema][indexPalavra]) //Auxilio, excluir depois
+  console.log(temas[indexTema]); //Auxilio, excluir depois
+  console.log(palavras[indexTema][indexPalavra]); //Auxilio, excluir depois
 
   palavraEscolhida = palavras[indexTema][indexPalavra].split(""); //Transforma a palavra escolhida aleatoriamente em um array
+
+  qntdLetrasEscolhidas = palavraEscolhida.filter(
+    (letra) => letra != " "
+  ).length;
 }
 
 // Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
-function gerarTracoPalavraEscolhida(){
-  return palavraEscolhida.map(letra => {
-    if(letra !== " "){
+function gerarTracoPalavraEscolhida() {
+  return palavraEscolhida.map((letra) => {
+    if (letra !== " ") {
       return null;
     }
     return letra;
-  }); 
+  });
 }
 
 // Função para validar a tecla selecionada
-function validarTeclaSelecionada(teclaSelecionada){
-  if(palavraEscolhida.includes(teclaSelecionada)){
-    console.log("OK")  //Auxilio, excluir depois
-
+function validarTeclaSelecionada(teclaSelecionada) {
+  if (palavraEscolhida.includes(teclaSelecionada)) {
+    //Preenche a palavra escolhida com a letra correta
     palavraEscolhida.forEach((letra, index) => {
-      if(letra === teclaSelecionada){ 
-        palavraPreenchida[index] = letra; //Preenche a palavra escolhida com a letra correta
+      if (letra === teclaSelecionada) {
+        palavraPreenchida[index] = letra;
+        qntdLetrasCorretas++;
       }
-    }) 
-    console.log(palavraPreenchida);  //Auxilio, excluir depois
-    atualizarTracoPalavraEscolhida() 
-  } else{
-    console.log("Errou...")  //Auxilio, excluir depois
+    });
+
+    console.log(palavraPreenchida); //Auxilio, excluir depois
+    atualizarTracoPalavraEscolhida();
+  } else {
+    qntdTentativas--;
     atualizarImagemHangman();
-    atualizarPlacar()
+    atualizarPlacar();
   }
+  console.log(
+    qntdLetrasEscolhidas + " - " + qntdLetrasCorretas + " - " + qntdTentativas
+  ); //Auxilio, excluir depois
+  verificarStatusPontuacao();
 }
 
 // Função para gerar os traços da palavra escolhida
@@ -146,88 +209,123 @@ function atualizarTracoPalavraEscolhida() {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
-  palavraPreenchida.forEach(caracter => {
+  palavraPreenchida.forEach((caracter) => {
     const letterContainer = document.createElement("span");
     letterContainer.innerHTML = caracter;
 
-    if(caracter !== " "){
-      letterContainer.classList.add("game-page__letter-container")
-
+    if (caracter !== " ") {
+      letterContainer.classList.add("game-page__letter-container");
     } else {
-      letterContainer.classList.add("game-page__null-container")
+      letterContainer.classList.add("game-page__null-container");
     }
 
-    wordContainer.appendChild(letterContainer)
-  })
+    wordContainer.appendChild(letterContainer);
+  });
 }
 
 // Função para gerar o teclado virtual
-function gerarTecladoVirtual(){
+function gerarTecladoVirtual() {
   const teclado = document.getElementById("keyboard");
   teclado.innerHTML = "";
 
   const letras = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ç'
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "ç",
   ];
 
-  letras.forEach(letra => {
+  letras.forEach((letra) => {
     const containerLetra = document.createElement("button");
 
     containerLetra.classList.add("game-page__keyboard-key");
     containerLetra.innerHTML = letra;
-    containerLetra.removeAttribute("disabled")
+    containerLetra.removeAttribute("disabled");
 
-    teclado.appendChild(containerLetra)
-  })
+    teclado.appendChild(containerLetra);
+  });
 
   capturarTecla(teclado);
 }
 
 // Função para capturar a tecla selecionada
-function capturarTecla(teclado){
+function capturarTecla(teclado) {
   const teclas = teclado.querySelectorAll("button");
 
-  teclas.forEach(tecla => {
+  teclas.forEach((tecla) => {
     tecla.addEventListener("click", (e) => {
-      let teclaSelecionada = tecla.innerHTML;
+      validarTeclaSelecionada(tecla.innerHTML);
 
-      validarTeclaSelecionada(teclaSelecionada)
-      tecla.setAttribute("disabled", "true") // Desabilita a tecla selecionada
-      tecla.classList.toggle("keyboard-letter--disabled")
+      tecla.setAttribute("disabled", "true"); // Desabilita a tecla selecionada
+      tecla.classList.toggle("keyboard-key--disabled");
     });
   });
-  
 }
 
-// Função para atualizar a página do jogo
-function atualizarPagina(){
+// Função para atualizar a exibição da pagina inicial
+function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
 
-  if(!homePage.classList.contains("page--hidden")){
-    homePage.classList.toggle("page--hidden"); // Esconde a página inicial
-  }
-
-  gerarTecladoVirtual();
-  iniciarImagemHangman();
+  homePage.classList.toggle("page--hidden")
 }
 
 // Função para iniciar o jogo
-function iniciarJogo(){
-  atualizarPagina()
+function iniciarJogo() {
+  // atualizarPagina();
 
-  tentativas = 6;
-  atualizarPlacar() 
+  qntdTentativas = 6;
+  qntdLetrasEscolhidas = 0;
+  qntdLetrasCorretas = 0;
+
+  gerarTecladoVirtual();
+  iniciarImagemHangman();
+  atualizarPlacar();
   gerarPalavraEscolhida(); // Gera a palavra escolhida aleatoriamente
   palavraPreenchida = gerarTracoPalavraEscolhida(); // Inicializa com a palavra vazia
-  atualizarTracoPalavraEscolhida() 
-  incluirTema()
+  atualizarTracoPalavraEscolhida();
+  incluirTema();
 }
 
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function () {
   tracarTituloPrincipal();
 
-  document.getElementById("start-btn").addEventListener("click", iniciarJogo);
+  document.getElementById("start-btn").addEventListener("click", function(){
+    atualizarPaginaInicial();
+    iniciarJogo();
+  });
 
   document.getElementById("restart-btn").addEventListener("click", iniciarJogo);
+
+  document.getElementById("message-restart-btn").addEventListener("click", () => {
+    atualizarMensagemResultado()
+    iniciarJogo();
+  });
+
+  document.getElementById("message-home-page-btn").addEventListener("click", () => {
+    atualizarPaginaInicial();
+  });
 });
