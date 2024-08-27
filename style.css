@@ -33,12 +33,12 @@ main {
   justify-items: center;
 }
 
-.home-page, .game-page, .game-message__card {
+.game-page, .game-message__card { /*Para versão desktop,, tirei .home-page, */
   border: .3rem solid var(--color-dark);
   background-color: var(--main-bg-color);
 }
 
-.home-page, .game-page, .game-message {
+.game-page, .game-message { /*Para versão desktop, tirei .home-page, */
   padding: 1.5rem 1.25rem;
   position: absolute;
   display: grid;
@@ -47,6 +47,27 @@ main {
   right: 0;
   height: 100dvh;
   max-width: 100dvw;
+}
+
+/* Em construção */
+.home-page {
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  max-width: 100dvw;
+}
+
+/* Em construção */
+.home-page__card {
+  padding: 1.5rem 1.25rem;
+  display: grid;
+  min-height: 100dvh;
+  min-width: 100dvw;
+  border: .3rem solid var(--color-dark);
+  background-color: var(--main-bg-color);
 }
 
 .home-page__start-button, .game-page__restart-button , .game-message__restart-button {
@@ -68,13 +89,27 @@ main {
 }
 
 /*  Estilos Home Page */
-.home-page {
+/*Estilo antigo, antes de criar a versão desktop, vou deixar aqui por enquanto*/
+/* .home-page {
   z-index: 3;
   transition: transform .4s;
   justify-content: center;
   justify-items: center;
   align-items: center;
-  /* transform: translateY(-100%); */
+  /* transform: translateY(-100%);
+} */
+
+/* Em construção */
+.home-page {
+  background-color: #c5c1b5;
+  z-index: 3;
+  transition: transform .4s;
+}
+
+/* Em construção */
+.home-page__card {
+  justify-content: center;
+  place-items: center;
 }
 
 .home-page.page--hidden {
@@ -97,6 +132,10 @@ main {
   margin: 0 .2rem;
   display: inline-flex;
   line-height: 1;
+}
+
+.home-page__hangman-game {
+  width: 180px;
 }
 
 .home-page__start-button {
@@ -456,4 +495,37 @@ main {
 
 .game-message__play-icon{
   width: 1.5rem;
+}
+
+@media (min-width: 500px) {
+  .home-page {
+    place-content: center;
+  }
+
+  .home-page__card{
+    display: grid;
+    grid-template-columns: auto auto;
+    place-content: center;
+    align-items: start;
+    gap: 5rem;
+    min-width: 80dvw;
+    min-height: 80dvh;
+    border-radius: 1rem;
+    box-shadow: -.7rem .7rem 1.5rem hsla(43, 6%, 23%, 0.363);
+  }
+
+  .home-page__main-title {
+    font-size: 3.25rem;
+  }
+
+  .home-page__hangman-game {
+    grid-area: 1 / 1 / 3 / 2;
+    align-self: center;
+    min-width: 280px;
+  }
+
+  .home-page__start-button {
+    align-self: self-end;
+    font-size: 2.75rem;
+  }
 }
