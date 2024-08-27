@@ -285,11 +285,16 @@ function capturarTecla(teclado) {
   });
 }
 
-// Função para atualizar a exibição da pagina inicial
+// Função para atualizar a exibição da pagina inicial //Em construção, adaptando de acordo com a versão desktop.
 function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
 
+  const homePageContainer = document.getElementById("home-page-container");
+
   homePage.classList.toggle("page--hidden")
+  // versão desktop??
+  homePage.classList.toggle("container--hidden")
+  homePageContainer.classList.toggle("container--hidden")
 }
 
 // Função para iniciar o jogo

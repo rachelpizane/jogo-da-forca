@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 /* Estilos gerais */
@@ -109,7 +109,13 @@ main {
 /* Em construção */
 .home-page__card {
   justify-content: center;
+}
+
+.home-page__container {
+  display: grid;
+  justify-content: center;
   place-items: center;
+  min-height: 100%;
 }
 
 .home-page.page--hidden {
@@ -503,15 +509,20 @@ main {
   }
 
   .home-page__card{
-    display: grid;
-    grid-template-columns: auto auto;
-    place-content: center;
-    align-items: start;
-    gap: 5rem;
     min-width: 80dvw;
     min-height: 80dvh;
     border-radius: 1rem;
     box-shadow: -.7rem .7rem 1.5rem hsla(43, 6%, 23%, 0.363);
+    overflow: hidden;
+    transition: opacity 2s linear;
+  }
+
+  .home-page__container {
+    grid-template-columns: auto auto;
+    place-content: center;
+    align-items: start;
+    gap: 4rem;
+    transition: opacity 2s linear;
   }
 
   .home-page__main-title {
@@ -527,5 +538,10 @@ main {
   .home-page__start-button {
     align-self: self-end;
     font-size: 2.75rem;
+  }
+
+  .container--hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 }
