@@ -98,7 +98,7 @@ function atualizarMensagemResultado(){
   const gameMessage = document.getElementById("game-message")
   const messageCard = document.getElementById("message-card")
 
-  gameMessage.classList.toggle("message--invisible")
+  gameMessage.classList.toggle("message--visibility-hidden")
   messageCard.classList.toggle("card--expand")
 }
 
@@ -288,13 +288,14 @@ function capturarTecla(teclado) {
 // Função para atualizar a exibição da pagina inicial //Em construção, adaptando de acordo com a versão desktop.
 function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
+  const tamanhoTela = window.innerWidth
 
-  const homePageContainer = document.getElementById("home-page-container");
-
-  homePage.classList.toggle("page--hidden")
-  // versão desktop??
-  homePage.classList.toggle("container--hidden")
-  homePageContainer.classList.toggle("container--hidden")
+  if (tamanhoTela < 1150){
+    homePage.classList.toggle("page--move-up")
+  } else {
+    homePage.classList.toggle("page--visibility-hidden")
+  }
+  
 }
 
 // Função para iniciar o jogo

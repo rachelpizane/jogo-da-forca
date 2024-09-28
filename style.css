@@ -86,7 +86,7 @@ main {
   min-height: 100%;
 }
 
-.home-page.page--hidden {
+.page--move-up {
   transform: translateY(-100%);
 }
 
@@ -290,7 +290,7 @@ main {
   transition: opacity .5s linear;
 }
 
-.game-message.message--invisible {
+.game-message.message--visibility-hidden {
   visibility: hidden;
   opacity: 0;
 }
@@ -502,14 +502,14 @@ main {
     border-radius: 1rem;
     box-shadow: -.7rem .7rem 1.5rem hsla(43, 6%, 23%, 0.363);
     overflow: hidden;
-    transition: opacity 2s linear;
+    /* transition: opacity 2s linear; */
   }
 
   .home-page__container {
     place-items: initial;
     grid-template-columns: 1fr 1fr;
     gap: 4rem 2rem;
-    transition: opacity 2s linear;
+    /* transition: opacity 2s linear; */
   }
  
   .home-page__hangman-game {
@@ -523,8 +523,8 @@ main {
     font-size: 2.75rem;
   }
 
-  .container--hidden {
-    opacity: 0;
+  .page--visibility-hidden {
+    /* opacity: 0; */
     visibility: hidden;
   }
 
