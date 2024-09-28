@@ -17,7 +17,7 @@
   padding:0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* Estilos gerais */
@@ -33,23 +33,6 @@ main {
   justify-items: center;
 }
 
-.game-message__card { /*Para versão desktop,, tirei .home-page e game-page */
-  border: .3rem solid var(--color-dark);
-  background-color: var(--main-bg-color);
-}
-
-.game-message { /*Para versão desktop, tirei .home-page e .game-page */
-  padding: 1.5rem 1.25rem;
-  position: absolute;
-  display: grid;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100dvh;
-  max-width: 100dvw;
-}
-
-/* Em construção */
 .home-page, .game-page{
   position: absolute;
   display: grid;
@@ -61,12 +44,9 @@ main {
   background-color: #c5c1b5;
 }
 
-/* Em construção */
 .home-page__card, .game-page__card {
   padding: 1.5rem 1.25rem;
   display: grid;
-  /* min-height: 100dvh; */
-  /* min-width: 100dvw; */
   border: .3rem solid var(--color-dark);
   background-color: var(--main-bg-color);
 }
@@ -90,23 +70,11 @@ main {
 }
 
 /*  Estilos Home Page */
-/*Estilo antigo, antes de criar a versão desktop, vou deixar aqui por enquanto*/
-/* .home-page {
-  z-index: 3;
-  transition: transform .4s;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  /* transform: translateY(-100%);
-} */
-
-/* Em construção */
 .home-page {
   z-index: 3;
   transition: transform .4s;
 }
 
-/* Em construção */
 .home-page__card {
   justify-content: center;
 }
@@ -159,13 +127,6 @@ main {
 .game-page__try, .game-page__subtitle {
   font-family: "Krub", sans-serif;
 }
-
-/* .game-page {
-  z-index: 2;
-  grid-template-rows:  repeat(5, min-content);
-  align-content: space-between;
-  text-transform: uppercase;
-} */
 
 .game-page {
   z-index: 2;
@@ -313,9 +274,16 @@ main {
   border: .12rem solid #676565;
 }
 
-
 /* Estilos Game Message */
 .game-message {
+  padding: 1.5rem 1.25rem;
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  max-width: 100dvw;
   z-index: 2;
   background-color: #000000ab;
   place-content: center;
@@ -335,6 +303,7 @@ main {
   justify-items: center;
   border-radius: 1.5rem;
   border: .4rem solid var(--color-dark);
+  background-color: var(--main-bg-color);
   transform: scale(0);
 }
 
@@ -519,7 +488,7 @@ main {
   width: 1.5rem;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1150px) {
   .home-page, .game-page {
     justify-content: center;
     padding: 4rem 5rem;
@@ -565,10 +534,9 @@ main {
   }
 
   .game-page__container {
-    grid-template-columns: 40% 1fr;
-    grid-template-rows: min-content 1fr 1fr 1fr;
-    align-content: space-between;
-    gap: 1.5rem 0;
+    grid-template-columns: 40% auto;
+    grid-template-rows: min-content auto auto auto;
+    gap: 0 2rem
   }
 
   .game-page__header {
@@ -577,62 +545,40 @@ main {
   }
 
   .game-page__restart-button {
-    /* font-size: 1.12em; */
-    padding: .6rem .9rem;
+    padding: .7rem 1rem;
+    font-size: 1.1rem;
+    margin-left: 3rem;
+  }
+
+  .game-page__try {
+    font-size: 1.35rem;
   }
 
   .game-page__image { 
     grid-area: 2 / 1 / 5 / 2;
-    justify-self: start;
   }
 
   .game-page__image > svg {
-    min-width: fit-content;
-    /* min-height: 100%; */
+    min-width: 100%;
+    min-height: 100%;
   }
 
-  /* .game-page__subtitle {
-    font-size: 1.75em;
-  } */
-
-  .game-page__tip {
-    justify-self: center;
-    /* min-width: 400px; */
+  .game-page__subtitle {
+    font-size: 1.5rem;
   }
 
-  .game-page__tip-container{
+  .game-page__tip-container {
     padding: 1rem;
   }
 
   .game-page__tip-word {
-    /* font-size: 2em; */
-  }
-
-  .game-page__word-container {
-    /* font-size: 1.85em; */
-    gap: 0 .4rem;
-    /* min-height: 6.5rem; */
-  }
-
-  .game-page__letter-container {
-    /* height: 2.65rem;
-    max-width: 2.8rem;
-    min-width: 2.4rem; */
-    box-sizing: content-box;
-  }
-
-  .game-page__keyboard {
-    gap: .38rem;
-  }
-
-  .game-page__keyboard-key {
-    /* min-width: 1.2em;
-    font-size: 1em; */
+    font-size: 1.8rem;
   }
 
   /* Estilos Game Message */
   .game-message__card {
-    /* min-width: 500px; */
+    min-width: 32rem;
+    padding: 3rem;
   }
 
   .game-message__restart-button {
@@ -646,5 +592,6 @@ main {
     .home-page__card, .game-page__card {
       max-width: 80rem;
       max-height: 47rem;
+      padding: 8rem;
     }
 }
