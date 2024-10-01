@@ -16,7 +16,6 @@ let temas = [
   new Tema("países", ["brasil", "estados unidos", "frança", "japao", "australia"]),
 ]
 
-
 let temaAleatorio;
 let palavraAleatoria;
 let palavraPreenchida;
@@ -25,23 +24,23 @@ let qntdTentativas;
 let qntdLetrasEscolhidas;
 let qntdLetrasCorretas;
 
-// Função para traçar o título principal
-function tracarTituloPrincipal() {
-  let titulo = document.getElementById("main-title").querySelectorAll("span");
+// Função que gera traços abaixo do título principal //OK
+function gerarTracosTituloPrincipal() {
+  const tituloPrincipal = document.getElementById("main-title").querySelectorAll("span");
 
-  titulo.forEach((parteTitulo) => {
-    const palavra = parteTitulo.innerHTML;
+  tituloPrincipal.forEach((parteTitulo) => {
+    const parteTituloCopia = parteTitulo.innerHTML;
     parteTitulo.innerHTML = "";
 
-    for (let j = 0; j < palavra.length; j++) {
+    for (let i = 0; i < parteTituloCopia.length; i++) {
       const span = document.createElement("span");
 
-      if (palavra[j] == " ") {
-        span.innerHTML = palavra[j];
-      } else {
+      if (parteTituloCopia[i] !== " ") {
         span.classList.add("main-title-letter--dashed");
-        span.innerHTML = palavra[j];
-      }
+      } 
+
+      span.innerHTML = parteTituloCopia[i];
+
       parteTitulo.appendChild(span);
     }
   });
@@ -148,11 +147,13 @@ function verificarStatusPontuacao() {
   }
 }
 
-//Função para incluir o tema escolhido na página
+//Função para incluir o tema escolhido na página //OK
 function incluirTema() {
+  
   document.getElementById("tip").innerHTML = temaAleatorio;
 }
 
+// Função para gerar um tema e uma palavra aleatória //OK
 function gerarTemaPalavraAleatoria() {
   const index = Math.floor(Math.random() * temas.length);
 
@@ -160,6 +161,7 @@ function gerarTemaPalavraAleatoria() {
   palavraAleatoria = temas[index].gerarPalavraAleatoria().split('')
 }
 
+// Função para somar a quantidade de letras da palavra aleatória //OK
 function somarQuantidadeLetrasAleatorias() {
   return palavraAleatoria.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
 }
@@ -301,17 +303,18 @@ function iniciarJogo() {
   qntdLetrasCorretas = somarQuantidadeLetrasAleatorias();
  
   incluirTema();
-
   gerarTecladoVirtual();
   iniciarImagemHangman();
   atualizarPlacar();
+
   palavraPreenchida = gerarTracopalavraAleatoria(); // Inicializa com a palavra vazia
+  console.log(palavraPreenchida)
   atualizarTracopalavraAleatoria();
 }
 
 // Função para atualizar o conteúdo da página
-document.addEventListener("DOMContentLoaded", function () {
-  tracarTituloPrincipal();
+document.addEventListener("DOMContentLoaded", function() {
+  gerarTracosTituloPrincipal();
 
   document.getElementById("start-btn").addEventListener("click", function(){
     atualizarPaginaInicial();
