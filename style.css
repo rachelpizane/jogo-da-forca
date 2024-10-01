@@ -33,13 +33,7 @@ main {
   justify-items: center;
 }
 
-.home-page, .game-page, .game-message__card {
-  border: .3rem solid var(--color-dark);
-  background-color: var(--main-bg-color);
-}
-
-.home-page, .game-page, .game-message {
-  padding: 1.5rem 1.25rem;
+.home-page, .game-page{
   position: absolute;
   display: grid;
   top: 0;
@@ -47,6 +41,14 @@ main {
   right: 0;
   height: 100dvh;
   max-width: 100dvw;
+  background-color: #c5c1b5;
+}
+
+.home-page__card, .game-page__card {
+  padding: 1.5rem 1.25rem;
+  display: grid;
+  border: .3rem solid var(--color-dark);
+  background-color: var(--main-bg-color);
 }
 
 .home-page__start-button, .game-page__restart-button , .game-message__restart-button {
@@ -71,13 +73,20 @@ main {
 .home-page {
   z-index: 3;
   transition: transform .4s;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  /* transform: translateY(-100%); */
 }
 
-.home-page.page--hidden {
+.home-page__card {
+  justify-content: center;
+}
+
+.home-page__container {
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  min-height: 100%;
+}
+
+.page--move-up {
   transform: translateY(-100%);
 }
 
@@ -99,8 +108,13 @@ main {
   line-height: 1;
 }
 
+.home-page__hangman-game {
+  max-width: 11.25rem;
+}
+
 .home-page__start-button {
-  min-width: 100%;
+  justify-self: stretch;
+  max-width: 100%;
   font-size: 2.5rem;
   border: .25rem solid var(--color-dark);
   display: inline-flex;
@@ -116,10 +130,18 @@ main {
 
 .game-page {
   z-index: 2;
+}
+
+.game-page__card {
+  justify-content: center;
+}
+
+.game-page__container {
+  display: grid;
   grid-template-rows:  repeat(5, min-content);
   align-content: space-between;
   text-transform: uppercase;
-}
+} 
 
 .game-page__header{
   display: flex;
@@ -151,7 +173,7 @@ main {
   padding-bottom: .1rem;
 }
 
-.game-page__tip-container{
+.game-page__tip-container {
   background-color: var(--transparent-primary-color);
   padding: .75rem;
   text-align: center;
@@ -169,7 +191,7 @@ main {
 }
 
 .game-page__hangman-game {
-  max-width: 80%;
+  width: 80%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -179,7 +201,7 @@ main {
   visibility: hidden;
 }
 
-.game-page__word-container{
+.game-page__word-container {
   font-size: 1.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -218,7 +240,7 @@ main {
   border-radius: .5rem;
 }
 
-.game-page__keyboard{
+.game-page__keyboard {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -252,16 +274,23 @@ main {
   border: .12rem solid #676565;
 }
 
-
 /* Estilos Game Message */
-.game-message{
+.game-message {
+  padding: 1.5rem 1.25rem;
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  max-width: 100dvw;
   z-index: 2;
   background-color: #000000ab;
   place-content: center;
   transition: opacity .5s linear;
 }
 
-.game-message.message--invisible {
+.game-message.message--visibility-hidden {
   visibility: hidden;
   opacity: 0;
 }
@@ -274,6 +303,7 @@ main {
   justify-items: center;
   border-radius: 1.5rem;
   border: .4rem solid var(--color-dark);
+  background-color: var(--main-bg-color);
   transform: scale(0);
 }
 
@@ -421,7 +451,7 @@ main {
   }
 }
 
-.game-message__restart-button{
+.game-message__restart-button {
   font-size: 1rem;
   border: .2rem solid var(--color-dark);
   border-radius: .75rem;
@@ -456,4 +486,110 @@ main {
 
 .game-message__play-icon{
   width: 1.5rem;
+}
+
+@media (min-width: 1150px) {
+  .home-page, .game-page {
+    justify-content: center;
+    padding: 4rem 5rem;
+  }
+
+  .home-page__card, .game-page__card {
+    padding: 4rem 8rem;
+    place-content: center;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 1rem;
+    box-shadow: -.7rem .7rem 1.5rem hsla(43, 6%, 23%, 0.363);
+    overflow: hidden;
+  }
+
+  .home-page__container {
+    place-items: initial;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 2rem;
+  }
+ 
+  .home-page__hangman-game {
+    align-self: center;
+    grid-area: 1 / 1 / 3 / 2;
+    min-width: 11.25rem;
+    max-width: 17.5rem;
+  }
+
+  .home-page__start-button {
+    font-size: 2.75rem;
+  }
+
+  .page--visibility-hidden {
+    /* opacity: 0; */
+    visibility: hidden;
+  }
+
+  /* Game Page */
+  .game-page__card {
+    align-content: stretch;
+  }
+
+  .game-page__container {
+    grid-template-columns: 40% auto;
+    grid-template-rows: min-content auto auto auto;
+    gap: 0 2rem
+  }
+
+  .game-page__header {
+    grid-area: 1 / 1 / 2 / 3;
+    margin-bottom: .5rem;
+  }
+
+  .game-page__restart-button {
+    padding: .7rem 1rem;
+    font-size: 1.1rem;
+    margin-left: 3rem;
+  }
+
+  .game-page__try {
+    font-size: 1.35rem;
+  }
+
+  .game-page__image { 
+    grid-area: 2 / 1 / 5 / 2;
+  }
+
+  .game-page__image > svg {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .game-page__subtitle {
+    font-size: 1.5rem;
+  }
+
+  .game-page__tip-container {
+    padding: 1rem;
+  }
+
+  .game-page__tip-word {
+    font-size: 1.8rem;
+  }
+
+  /* Estilos Game Message */
+  .game-message__card {
+    min-width: 32rem;
+    padding: 3rem;
+  }
+
+  .game-message__restart-button {
+    min-width: initial;
+    font-size: 1.1rem;
+    padding: .75rem 1.75rem;
+  }
+}
+
+@media (min-width: 1750px) {
+    .home-page__card, .game-page__card {
+      max-width: 80rem;
+      max-height: 47rem;
+      padding: 8rem;
+    }
 }

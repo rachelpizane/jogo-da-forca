@@ -13,56 +13,60 @@
   <main>
     <!-- Página inicial -->
     <section id="home-page" class="home-page">
-      <h1 id="main-title" class="home-page__main-title">
-        <span>Jogo</span>
-        <span>da Forca</span>
-      </h1>
-
-      <img src="img/hangman-game.svg" alt="hangman">
-
-      <button id="start-btn" class="home-page__start-button">
-        Jogar
-        <img class="home-page__play-icon" src="img/play-icon.svg" alt="play icon">
-      </button>
+      <div class="home-page__card">
+        <div id="home-page-container" class="home-page__container">
+          <h1 id="main-title" class="home-page__main-title">
+            <span>Jogo</span>
+            <span>da Forca</span>
+          </h1>
+          <img class="home-page__hangman-game" src="img/hangman-game.svg" alt="hangman">
+          <button id="start-btn" class="home-page__start-button">
+            Jogar
+            <img class="home-page__play-icon" src="img/play-icon.svg" alt="play icon">
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- Página do jogo -->
     <section id="game-page" class="game-page">
-      <header class="game-page__header">
-        <button id="restart-btn" class="game-page__restart-button">Recomeçar</button>
+      <div class="game-page__card">
+        <div class="game-page__container">
+          <header class="game-page__header">
+            <button id="restart-btn" class="game-page__restart-button">Recomeçar</button>
 
-        <p class="game-page__try">
-          Tentativa:
-          <span id="score">
-            <!-- Número de tentativas será inserido aqui -->
-          </span>
-        </p>
-      </header>
+            <p class="game-page__try">
+              Tentativa:
+              <span id="score">
+                <!-- Número de tentativas será inserido aqui -->
+              </span>
+            </p>
+          </header>
 
-      <div class="game-page__tip">
-        <h2 class="game-page__subtitle">Dica</h2>
+          <div class="game-page__tip">
+            <h2 class="game-page__subtitle">Dica</h2>
+            <div class="game-page__tip-container">
+              <p id="tip" class="game-page__tip-word">
+                <!-- A dica será inserida aqui -->
+              </p>
+            </div>
+          </div>
 
-        <div class="game-page__tip-container">
-          <p id="tip" class="game-page__tip-word">
-            <!-- A dica será inserida aqui -->
-          </p>
+          <div id="hangman-container" class="game-page__image">
+            <!-- Imagem da hangman será inserida aqui -->
+          </div>
+          <div id="word-container" class="game-page__word-container">
+            <!-- Palavra aleatória será inserida aqui -->
+          </div>
+          
+          <div id="keyboard" class="game-page__keyboard">
+            <!-- Teclado virtual será inserido aqui -->
+          </div>
         </div>
-      </div>
-
-      <div id="hangman-container" class="game-page__image">
-        <!-- Imagem da hangman será inserida aqui -->
-      </div>
-
-      <div id="word-container" class="game-page__word-container">
-        <!-- Palavra aleatória será inserida aqui -->
-      </div>
-
-      <div id="keyboard" class="game-page__keyboard">
-        <!-- Teclado virtual será inserido aqui -->
       </div>
     </section>
 
-    <section id="game-message" class="game-message message--invisible">
+    <section id="game-message" class="game-message message--visibility-hidden">
       <div id="message-card" class="game-message__card">
         <h3 id="message-title" class="game-message__title">
           <!-- O título que representa o resultado será inserido aqui -->
