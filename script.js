@@ -46,11 +46,9 @@ function gerarTracosTituloPrincipal() {
   });
 }
 
-// Função para inserir a imagem do hangman
+// Função para inserir a imagem inicial do hangman //OK
 function iniciarImagemHangman() {
   const hangmanContainer = document.getElementById("hangman-container");
-
-  hangmanContainer.innerHTML = "";
 
   hangmanContainer.innerHTML = `
     <svg width="199" height="227" viewBox="0 0 199 227" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,25 +73,17 @@ function iniciarImagemHangman() {
     </svg>`;
 
   const hangman = hangmanContainer.querySelectorAll(".game-page__hangman-game");
-
+  
   hangman.forEach((parte) => {
     parte.classList.toggle("hangman-game--visibility");
   });
 }
 
-// Função para atualizar a imagem do hangman de acordo com as tentativas
+// Função para atualizar a imagem do hangman de acordo com as tentativas // OK
 function atualizarImagemHangman() {
-  const SVGElmentosID = [
-    "left-arm",
-    "right-arm",
-    "left-leg",
-    "right-leg",
-    "body",
-    "head",
-  ];
+  const SVGElmentosID = ["left-arm","right-arm","left-leg","right-leg","body","head"];
 
   const parte = document.getElementById(SVGElmentosID[qntdTentativas]);
-
   parte.classList.toggle("hangman-game--visibility");
 }
 
@@ -190,7 +180,7 @@ function validarTeclaSelecionada(teclaSelecionada) {
     console.log(palavraPreenchida); //Auxilio, excluir depois
     atualizarTracopalavraAleatoria();
   } else {
-    qntdTentativas--;
+    --qntdTentativas;
     atualizarImagemHangman();
     atualizarPlacar();
   }
@@ -304,8 +294,8 @@ function iniciarJogo() {
  
   incluirTema();
   gerarTecladoVirtual();
-  iniciarImagemHangman();
   atualizarPlacar();
+  iniciarImagemHangman();
 
   palavraPreenchida = gerarTracopalavraAleatoria(); // Inicializa com a palavra vazia
   console.log(palavraPreenchida)
@@ -315,6 +305,7 @@ function iniciarJogo() {
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function() {
   gerarTracosTituloPrincipal();
+  
 
   document.getElementById("start-btn").addEventListener("click", function(){
     atualizarPaginaInicial();
