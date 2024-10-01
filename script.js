@@ -25,7 +25,7 @@ let qntdLetrasEscolhidas;
 let qntdLetrasCorretas;
 
 // Função que gera traços abaixo do título principal //OK
-function gerarTracosTituloPrincipal() {
+function exibirTracosTituloPrincipal() {
   const tituloPrincipal = document.getElementById("main-title").querySelectorAll("span");
 
   tituloPrincipal.forEach((parteTitulo) => {
@@ -79,7 +79,7 @@ function iniciarImagemHangman() {
   });
 }
 
-// Função para atualizar a imagem do hangman de acordo com as tentativas // OK
+// Função para atualizar a imagem do hangman de acordo com as tentativas //OK
 function atualizarImagemHangman() {
   const SVGElmentosID = ["left-arm","right-arm","left-leg","right-leg","body","head"];
 
@@ -87,13 +87,13 @@ function atualizarImagemHangman() {
   parte.classList.toggle("hangman-game--visibility");
 }
 
-// Função para atualizar o placar
+// Função para atualizar o placar //OK
 function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
 
-// Função para atualizar exibicação da mensagem de resultado
-function atualizarMensagemResultado(){
+// Função para atualizar exibicação da mensagem de resultado //OK
+function atualizarMensagemResultado(){ 
   const gameMessage = document.getElementById("game-message")
   const messageCard = document.getElementById("message-card")
 
@@ -138,7 +138,7 @@ function verificarStatusPontuacao() {
 }
 
 //Função para incluir o tema escolhido na página //OK
-function incluirTema() {
+function exibirTema() {
   
   document.getElementById("tip").innerHTML = temaAleatorio;
 }
@@ -292,7 +292,7 @@ function iniciarJogo() {
   qntdLetrasEscolhidas = 0;
   qntdLetrasCorretas = somarQuantidadeLetrasAleatorias();
  
-  incluirTema();
+  exibirTema();
   gerarTecladoVirtual();
   atualizarPlacar();
   iniciarImagemHangman();
@@ -304,7 +304,7 @@ function iniciarJogo() {
 
 // Função para atualizar o conteúdo da página
 document.addEventListener("DOMContentLoaded", function() {
-  gerarTracosTituloPrincipal();
+  exibirTracosTituloPrincipal();
   
 
   document.getElementById("start-btn").addEventListener("click", function(){
