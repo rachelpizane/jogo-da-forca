@@ -1,7 +1,7 @@
 class Tema {
   constructor(tema, palavras){
     this.tema = tema;
-    this.palavras = palavras
+    this.palavras = palavras;
   }
 
   gerarPalavraAleatoria = () => {
@@ -17,8 +17,8 @@ let temas = [
 ]
 
 
-let temaEscolhido;
-let palavraEscolhida;
+let temaAleatorio;
+let palavraAleatoria;
 let palavraPreenchida;
 
 let qntdTentativas;
@@ -150,23 +150,23 @@ function verificarStatusPontuacao() {
 
 //Função para incluir o tema escolhido na página
 function incluirTema() {
-  document.getElementById("tip").innerHTML = temaEscolhido;
+  document.getElementById("tip").innerHTML = temaAleatorio;
 }
 
 function gerarTemaPalavraAleatoria() {
   const index = Math.floor(Math.random() * temas.length);
 
-  temaEscolhido = temas[index].tema
-  palavraEscolhida = temas[index].gerarPalavraAleatoria().split('')
+  temaAleatorio = temas[index].tema
+  palavraAleatoria = temas[index].gerarPalavraAleatoria().split('')
 }
 
 function somarQuantidadeLetrasAleatorias() {
-  return palavraEscolhida.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
+  return palavraAleatoria.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
 }
 
 // Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
-function gerarTracoPalavraEscolhida() {
-  return palavraEscolhida.map((letra) => {
+function gerarTracopalavraAleatoria() {
+  return palavraAleatoria.map((letra) => {
     if (letra !== " ") {
       return null;
     }
@@ -176,9 +176,9 @@ function gerarTracoPalavraEscolhida() {
 
 // Função para validar a tecla selecionada
 function validarTeclaSelecionada(teclaSelecionada) {
-  if (palavraEscolhida.includes(teclaSelecionada)) {
+  if (palavraAleatoria.includes(teclaSelecionada)) {
     //Preenche a palavra escolhida com a letra correta
-    palavraEscolhida.forEach((letra, index) => {
+    palavraAleatoria.forEach((letra, index) => {
       if (letra === teclaSelecionada) {
         palavraPreenchida[index] = letra;
         qntdLetrasCorretas++;
@@ -186,7 +186,7 @@ function validarTeclaSelecionada(teclaSelecionada) {
     });
 
     console.log(palavraPreenchida); //Auxilio, excluir depois
-    atualizarTracoPalavraEscolhida();
+    atualizarTracopalavraAleatoria();
   } else {
     qntdTentativas--;
     atualizarImagemHangman();
@@ -199,7 +199,7 @@ function validarTeclaSelecionada(teclaSelecionada) {
 }
 
 // Função para gerar os traços da palavra escolhida
-function atualizarTracoPalavraEscolhida() {
+function atualizarTracopalavraAleatoria() {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
@@ -305,8 +305,8 @@ function iniciarJogo() {
   gerarTecladoVirtual();
   iniciarImagemHangman();
   atualizarPlacar();
-  palavraPreenchida = gerarTracoPalavraEscolhida(); // Inicializa com a palavra vazia
-  atualizarTracoPalavraEscolhida();
+  palavraPreenchida = gerarTracopalavraAleatoria(); // Inicializa com a palavra vazia
+  atualizarTracopalavraAleatoria();
 }
 
 // Função para atualizar o conteúdo da página
