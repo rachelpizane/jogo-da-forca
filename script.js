@@ -1,11 +1,21 @@
-const temas = ["Animais", "Frutas", "Países"];
+class Tema {
+  constructor(tema, palavras){
+    this.tema = tema;
+    this.palavras = palavras
+  }
 
-const animais = ["cachorro", "gato", "elefante", "girafa", "tigre"];
-const frutas = ["maça", "banana", "laranja", "uva", "morango"];
-const paises = ["brasil", "estados unidos", "frança", "japao", "australia"];
+  gerarPalavraAleatoria = () => {
+    const index = Math.floor(Math.random() * this.palavras.length)
+    return this.palavras[index]
+  }
+}
 
-const palavras = [];
-palavras.push(animais, frutas, paises);
+let temas = [
+  new Tema("animais", ["cachorro", "gato", "elefante", "girafa", "tigre"]),
+  new Tema("frutas", ["maça", "banana", "laranja", "uva", "morango"]),
+  new Tema("países", ["brasil", "estados unidos", "frança", "japao", "australia"]),
+]
+
 
 let temaEscolhido;
 let palavraEscolhida;
@@ -143,31 +153,15 @@ function incluirTema() {
   document.getElementById("tip").innerHTML = temaEscolhido;
 }
 
-// Função para gerar um número aleatório
-function gerarNumeroAleatorio(largura) {
-  return Math.floor(Math.random() * largura);
+function gerarTemaPalavraAleatoria() {
+  const index = Math.floor(Math.random() * temas.length);
+
+  temaEscolhido = temas[index].tema
+  palavraEscolhida = temas[index].gerarPalavraAleatoria().split('')
 }
 
-// Função para gerar um tema aleatório
-function gerarTema() {
-  const indexTema = gerarNumeroAleatorio(temas.length);
-  temaEscolhido = temas[indexTema];
-  return indexTema;
-}
-
-// Função para gerar uma palavra aleatória
-function gerarPalavraEscolhida() {
-  const indexTema = gerarTema(); //Gera um número aleatório para escolher o tema
-  const indexPalavra = gerarNumeroAleatorio(palavras[indexTema].length); // Gera um número aleatório para escolher a palavra
-
-  console.log(temas[indexTema]); //Auxilio, excluir depois
-  console.log(palavras[indexTema][indexPalavra]); //Auxilio, excluir depois
-
-  palavraEscolhida = palavras[indexTema][indexPalavra].split(""); //Transforma a palavra escolhida aleatoriamente em um array
-
-  qntdLetrasEscolhidas = palavraEscolhida.filter(
-    (letra) => letra != " "
-  ).length;
+function somarQuantidadeLetrasAleatorias() {
+  return palavraEscolhida.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
 }
 
 // Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
@@ -300,17 +294,19 @@ function atualizarPaginaInicial(){
 
 // Função para iniciar o jogo
 function iniciarJogo() {
+  gerarTemaPalavraAleatoria()
+  
   qntdTentativas = 6;
   qntdLetrasEscolhidas = 0;
-  qntdLetrasCorretas = 0;
+  qntdLetrasCorretas = somarQuantidadeLetrasAleatorias();
+ 
+  incluirTema();
 
   gerarTecladoVirtual();
   iniciarImagemHangman();
   atualizarPlacar();
-  gerarPalavraEscolhida(); // Gera a palavra escolhida aleatoriamente
   palavraPreenchida = gerarTracoPalavraEscolhida(); // Inicializa com a palavra vazia
   atualizarTracoPalavraEscolhida();
-  incluirTema();
 }
 
 // Função para atualizar o conteúdo da página
