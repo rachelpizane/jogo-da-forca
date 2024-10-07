@@ -154,50 +154,27 @@ function somarQuantidadeLetrasAleatorias() {
   return palavraAleatoria.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
 }
 
-// Função para gerar os traços sem nenhum caracter preenchido da palavra escolhida
-function gerarTracopalavraAleatoria() {
-  return palavraAleatoria.map((letra) => {
-    if (letra !== " ") {
-      return null;
+// Função para iniciar a palavra que será preenchida ao longo do jogo //OK
+function iniciarPalavraPreenchida() {
+  return palavraAleatoria.map(char => {
+    if (char == " ") {
+      return char
     }
-    return letra;
+
+    return null
   });
 }
 
-// Função para validar a tecla selecionada
-function validarTeclaSelecionada(teclaSelecionada) {
-  if (palavraAleatoria.includes(teclaSelecionada)) {
-    //Preenche a palavra escolhida com a letra correta
-    palavraAleatoria.forEach((letra, index) => {
-      if (letra === teclaSelecionada) {
-        palavraPreenchida[index] = letra;
-        qntdLetrasCorretas++;
-      }
-    });
-
-    console.log(palavraPreenchida); //Auxilio, excluir depois
-    atualizarTracopalavraAleatoria();
-  } else {
-    --qntdTentativas;
-    atualizarImagemHangman();
-    atualizarPlacar();
-  }
-  console.log(
-    qntdLetrasEscolhidas + " - " + qntdLetrasCorretas + " - " + qntdTentativas
-  ); //Auxilio, excluir depois
-  verificarStatusResultado();
-}
-
-// Função para gerar os traços da palavra escolhida
-function atualizarTracopalavraAleatoria() {
+// Função para atualizar a exibição da palavra preenchida na tela //OK
+function atualizarExibicaoPalavraPreenchida() {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
-  palavraPreenchida.forEach((caracter) => {
+  palavraPreenchida.forEach((char) => {
     const letterContainer = document.createElement("span");
-    letterContainer.innerHTML = caracter;
+    letterContainer.innerHTML = char;
 
-    if (caracter !== " ") {
+    if (char !== " ") {
       letterContainer.classList.add("game-page__letter-container");
     } else {
       letterContainer.classList.add("game-page__null-container");
@@ -207,7 +184,46 @@ function atualizarTracopalavraAleatoria() {
   });
 }
 
-// Função para gerar o teclado virtual
+// Função para verificar se a tecla selecionada é uma das letras existente da palavra aleatória definida. //OK
+function verificarTeclaSelecionada(teclaSelecionada) {
+  if (palavraAleatoria.includes(teclaSelecionada)) {
+    palavraAleatoria.forEach((letra, index) => {
+      //Preenche a palavra aleatoria definida com a letra selecionada.
+      if (letra === teclaSelecionada) {
+        palavraPreenchida[index] = letra;
+        ++qntdLetrasEscolhidas;
+
+      }
+    });
+
+    atualizarExibicaoPalavraPreenchida();
+
+  } else {
+    --qntdTentativas;
+    atualizarImagemHangman();
+    atualizarPlacar();
+
+  }
+
+  verificarStatusResultado();
+
+}
+
+// Função para incluir evento de click no teclado virtual que desabilita a tecla selecionada e verifica se a letra é a correta ou não. //OK
+function incluirEventoClickTeclado(teclado) {
+  teclado = teclado.querySelectorAll("button");
+
+  teclado.forEach((tecla) => {
+    tecla.addEventListener("click", (e) => {
+      tecla.setAttribute("disabled", "true");
+      tecla.classList.add("keyboard-key--disabled");
+
+      verificarTeclaSelecionada(tecla.innerHTML)
+    });
+  });
+}
+
+// Função para gerar o teclado virtual //OK
 function gerarTecladoVirtual() {
   const teclado = document.getElementById("keyboard");
   teclado.innerHTML = "";
@@ -243,43 +259,28 @@ function gerarTecladoVirtual() {
   ];
 
   letras.forEach((letra) => {
-    const containerLetra = document.createElement("button");
+    const tecla = document.createElement("button");
 
-    containerLetra.classList.add("game-page__keyboard-key");
-    containerLetra.innerHTML = letra;
-    containerLetra.removeAttribute("disabled");
+    tecla.classList.add("game-page__keyboard-key");
+    tecla.innerHTML = letra;
 
-    teclado.appendChild(containerLetra);
+    teclado.appendChild(tecla);
   });
 
-  capturarTecla(teclado);
+  incluirEventoClickTeclado(teclado);
 }
 
-// Função para capturar a tecla selecionada
-function capturarTecla(teclado) {
-  const teclas = teclado.querySelectorAll("button");
-
-  teclas.forEach((tecla) => {
-    tecla.addEventListener("click", (e) => {
-      validarTeclaSelecionada(tecla.innerHTML);
-
-      tecla.setAttribute("disabled", "true"); // Desabilita a tecla selecionada
-      tecla.classList.toggle("keyboard-key--disabled");
-    });
-  });
-}
-
-// Função para atualizar a exibição da pagina inicial //Em construção, adaptando de acordo com a versão desktop.
+// Função para atualizar a página inicial de acordo com a largura da tela //OK
 function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
-  const tamanhoTela = window.innerWidth
 
-  if (tamanhoTela < 1150){
+  if (window.innerWidth < 1150){
     homePage.classList.toggle("page--move-up")
+
   } else {
     homePage.classList.toggle("page--visibility-hidden")
+
   }
-  
 }
 
 // Função para iniciar o jogo
@@ -295,9 +296,8 @@ function iniciarJogo() {
   atualizarPlacar();
   iniciarImagemHangman();
 
-  palavraPreenchida = gerarTracopalavraAleatoria(); // Inicializa com a palavra vazia
-  console.log(palavraPreenchida)
-  atualizarTracopalavraAleatoria();
+  palavraPreenchida = iniciarPalavraPreenchida();
+  atualizarExibicaoPalavraPreenchida();
 }
 
 // Função para atualizar o conteúdo da página
