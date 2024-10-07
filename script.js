@@ -94,11 +94,8 @@ function atualizarPlacar() {
 
 // Função para atualizar exibicação da mensagem de resultado //OK
 function atualizarMensagemResultado(){ 
-  const gameMessage = document.getElementById("game-message")
-  const messageCard = document.getElementById("message-card")
-
-  gameMessage.classList.toggle("message--visibility-hidden")
-  messageCard.classList.toggle("card--expand")
+  document.getElementById("game-message").classList.toggle("message--visibility-hidden")
+  document.getElementById("message-card").classList.toggle("card--expand")
 }
 
 // Função para atualizar os elementos da mensagem de acordo com o resultado
