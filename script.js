@@ -92,16 +92,16 @@ function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
 
-// Função para atualizar exibicação da mensagem de resultado //OK
-function atualizarMensagemResultado(){ 
+// Função para atualizar exibição da mensagem de resultado //OK
+function atualizarExibicaoMensagemResultado(){ 
   document.getElementById("game-message").classList.toggle("message--visibility-hidden")
   document.getElementById("message-card").classList.toggle("card--expand")
 }
 
-// Função para atualizar os elementos da mensagem de acordo com o resultado
+// Função para atualizar os elementos da mensagem de acordo com o resultado //OK
 function atualizarElementosMensagemResultado(resultado){
   function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
-    //Função auxiliar para adicionar os elementos 
+    //Função auxiliar para adicionar os elementos na mensagem
     messageTitle.innerText = tituloResultado
     messageImg.src = imagem
     messageImg.alt = altImagem
@@ -112,7 +112,6 @@ function atualizarElementosMensagemResultado(resultado){
   const messageImg = document.getElementById("message-img")
   const messagePolygon = document.getElementById("message-polygon")
 
-  atualizarMensagemResultado()
   messagePolygon.classList.remove("polygon--lose", "polygon--win")
 
   if(resultado){
@@ -121,16 +120,18 @@ function atualizarElementosMensagemResultado(resultado){
   } else {
     adicionarElementos("Você perdeu...", "img/sad-face-icon.svg", "sad face icon", "polygon--lose")
   }
+
+  atualizarExibicaoMensagemResultado()
 }
 
-// Função para verificar se o jogador ganhou ou perdeu
-function verificarStatusPontuacao() {
+// Função para verificar se o jogador ganhou ou perdeu //OK
+function verificarStatusResultado() {
   if (qntdTentativas == 0) {
-    console.log("Você perdeu..."); //Auxilio, excluir depois
     atualizarElementosMensagemResultado(false)
+
   } else if (qntdLetrasCorretas === qntdLetrasEscolhidas) {
-    console.log("Você ganhou!!"); //Auxilio, excluir depois
     atualizarElementosMensagemResultado(true)
+
   }
 }
 
@@ -184,7 +185,7 @@ function validarTeclaSelecionada(teclaSelecionada) {
   console.log(
     qntdLetrasEscolhidas + " - " + qntdLetrasCorretas + " - " + qntdTentativas
   ); //Auxilio, excluir depois
-  verificarStatusPontuacao();
+  verificarStatusResultado();
 }
 
 // Função para gerar os traços da palavra escolhida
@@ -312,14 +313,14 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("restart-btn").addEventListener("click", iniciarJogo);
 
   document.getElementById("message-restart-btn").addEventListener("click", () => {
-    atualizarMensagemResultado()
+    atualizarExibicaoMensagemResultado()
     iniciarJogo();
   });
 
   document.getElementById("message-home-page-btn").addEventListener("click", () => {
     atualizarPaginaInicial();
     setTimeout(() => {
-      atualizarMensagemResultado()
+      atualizarExibicaoMensagemResultado()
     },400);
   });
 });
