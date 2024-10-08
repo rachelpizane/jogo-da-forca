@@ -273,9 +273,18 @@ function gerarTecladoVirtual() {
 // Função para atualizar a página inicial de acordo com a largura da tela.
 function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
-
+  
   if (window.innerWidth < 1150){
-    homePage.classList.toggle("page--move-up")
+    if (homePage.classList.contains("page--move-up")) {
+      homePage.classList.remove("page--visibility-hidden", "page--move-up", )
+
+    } else {
+      homePage.classList.add("page--move-up")
+
+      setTimeout(() => {
+        homePage.classList.add("page--visibility-hidden")
+      },400);
+    }
 
   } else {
     homePage.classList.toggle("page--visibility-hidden")
