@@ -74,7 +74,15 @@ main {
 /*  Estilos da Pagina Inicial */
 .home-page {
   z-index: 3;
-  transition: transform .4s;
+  transition: transform .4s
+}
+
+.page--move-up {
+  transform: translateY(-100%);
+}
+
+.page--visibility-hidden {
+  visibility: hidden;
 }
 
 .home-page__card {
@@ -86,10 +94,6 @@ main {
   justify-content: center;
   place-items: center;
   min-height: 100%;
-}
-
-.page--move-up {
-  transform: translateY(-100%);
 }
 
 .home-page__main-title {
@@ -504,7 +508,7 @@ main {
   .home-page__container {
     place-items: initial;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem 2rem;
+    gap: 4rem;
   }
  
   .home-page__hangman-game {
@@ -516,10 +520,6 @@ main {
 
   .home-page__start-button {
     font-size: 2.75rem;
-  }
-
-  .page--visibility-hidden {
-    visibility: hidden;
   }
 
   /*  Estilos da Página do Jogo */
