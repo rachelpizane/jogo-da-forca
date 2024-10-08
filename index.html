@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="img/David-Renelt-Little-Icon-People-Hangman.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="img/icon-people-hangman.ico" type="image/x-icon">
 
   <title>Jogo da Forca</title>
 </head>
@@ -20,7 +20,9 @@
             <span>Jogo</span>
             <span>da Forca</span>
           </h1>
+
           <img class="home-page__hangman-game" src="img/hangman-game.svg" alt="hangman">
+
           <button id="start-btn" class="home-page__start-button">
             Jogar
             <img class="home-page__play-icon" src="img/play-icon.svg" alt="play icon">
@@ -46,6 +48,7 @@
 
           <div class="game-page__tip">
             <h2 class="game-page__subtitle">Dica</h2>
+
             <div class="game-page__tip-container">
               <p id="tip" class="game-page__tip-word">
                 <!-- A dica será inserida aqui -->
@@ -56,6 +59,7 @@
           <div id="hangman-container" class="game-page__image">
             <!-- Imagem da hangman será inserida aqui -->
           </div>
+
           <div id="word-container" class="game-page__word-container">
             <!-- Palavra aleatória será inserida aqui -->
           </div>
@@ -67,6 +71,7 @@
       </div>
     </section>
 
+    <!-- Mensagem do resultado do jogo -->
     <section id="game-message" class="game-message message--visibility-hidden">
       <div id="message-card" class="game-message__card">
         <h3 id="message-title" class="game-message__title">
@@ -79,7 +84,7 @@
           </div>
           
           <img id="message-img" class="game-message__img">
-          <!-- A imagem que representa o resultado será inserida aqui -->
+          <!-- A imagem que representa o resultado será inserida na tag img acima -->
         </div>
         
         <button id="message-restart-btn" class="game-message__restart-button">
