@@ -13,7 +13,7 @@ class Tema {
 let temas = [
   new Tema("animais", ["cachorro", "gato", "elefante", "girafa", "leao", "tigre", "macaco", "passaro", "peixe", "cobra", "rato", "cavalo", "vaca", "ovelha", "porco"]),
   new Tema("frutas", ['maca', 'banana', 'laranja', 'uva', 'morango', 'abacaxi', 'pera', 'melao', 'mamao', 'kiwi', 'limao', 'manga', 'figo', 'cereja']),
-  new Tema("países", ["brasil", "china", "estados unidos", "russia", "india", "angola", "alemanha", "frança", "espanha", "japao", "australia", "canada", "mexico", "egito", "argentina"]),
+  new Tema("países", ["brasil", "china", "estados unidos", "russia", "india", "angola", "alemanha", "frança", "espanha", "japao", "australia", "canada", "mexico", "egito", "portugal"]),
 ]
 
 let temaAleatorio;
