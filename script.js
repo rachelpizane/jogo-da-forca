@@ -24,7 +24,7 @@ let qntdTentativas;
 let qntdLetrasEscolhidas;
 let qntdLetrasCorretas;
 
-// Função que gera traços abaixo do título principal //OK
+// Função que gera traços abaixo do título principal.
 function exibirTracosTituloPrincipal() {
   const tituloPrincipal = document.getElementById("main-title").querySelectorAll("span");
 
@@ -46,7 +46,7 @@ function exibirTracosTituloPrincipal() {
   });
 }
 
-// Função para inserir a imagem inicial do hangman //OK
+// Função para inserir a imagem inicial do hangman.
 function iniciarImagemHangman() {
   const hangmanContainer = document.getElementById("hangman-container");
 
@@ -79,7 +79,7 @@ function iniciarImagemHangman() {
   });
 }
 
-// Função para atualizar a imagem do hangman de acordo com as tentativas //OK
+// Função para atualizar a imagem do hangman de acordo com as tentativas.
 function atualizarImagemHangman() {
   const SVGElmentosID = ["left-arm","right-arm","left-leg","right-leg","body","head"];
 
@@ -87,18 +87,18 @@ function atualizarImagemHangman() {
   parte.classList.toggle("hangman-game--visibility");
 }
 
-// Função para atualizar o placar //OK
+// Função para atualizar o placar de acordo com as tentativas.
 function atualizarPlacar() {
   document.getElementById("score").innerHTML = qntdTentativas;
 }
 
-// Função para atualizar exibição da mensagem de resultado //OK
+// Função para atualizar exibição da mensagem de resultado.
 function atualizarExibicaoMensagemResultado(){ 
   document.getElementById("game-message").classList.toggle("message--visibility-hidden")
   document.getElementById("message-card").classList.toggle("card--expand")
 }
 
-// Função para atualizar os elementos da mensagem de acordo com o resultado //OK
+// Função para atualizar os elementos da mensagem de acordo com o resultado.
 function atualizarElementosMensagemResultado(resultado){
   function adicionarElementos(tituloResultado, imagem, altImagem, classePolygon){
     //Função auxiliar para adicionar os elementos na mensagem
@@ -124,7 +124,7 @@ function atualizarElementosMensagemResultado(resultado){
   atualizarExibicaoMensagemResultado()
 }
 
-// Função para verificar se o jogador ganhou ou perdeu //OK
+// Função para verificar se o jogador ganhou ou perdeu.
 function verificarStatusResultado() {
   if (qntdTentativas == 0) {
     atualizarElementosMensagemResultado(false)
@@ -135,13 +135,13 @@ function verificarStatusResultado() {
   }
 }
 
-//Função para incluir o tema escolhido na página //OK
+//Função para incluir o tema escolhido na página.
 function exibirTema() {
   
   document.getElementById("tip").innerHTML = temaAleatorio;
 }
 
-// Função para gerar um tema e uma palavra aleatória //OK
+// Função para gerar um tema e uma palavra aleatória.
 function gerarTemaPalavraAleatoria() {
   const index = Math.floor(Math.random() * temas.length);
 
@@ -149,12 +149,12 @@ function gerarTemaPalavraAleatoria() {
   palavraAleatoria = temas[index].gerarPalavraAleatoria().split('')
 }
 
-// Função para somar a quantidade de letras da palavra aleatória //OK
+// Função para somar a quantidade de letras da palavra aleatória
 function somarQuantidadeLetrasAleatorias() {
   return palavraAleatoria.reduce((acc, letra) => letra != " " ? ++acc : acc ,0)
 }
 
-// Função para iniciar a palavra que será preenchida ao longo do jogo //OK
+// Função para iniciar a palavra que será preenchida ao longo do jogo.
 function iniciarPalavraPreenchida() {
   return palavraAleatoria.map(char => {
     if (char == " ") {
@@ -165,7 +165,7 @@ function iniciarPalavraPreenchida() {
   });
 }
 
-// Função para atualizar a exibição da palavra preenchida na tela //OK
+// Função para atualizar a exibição da palavra preenchida na tela.
 function atualizarExibicaoPalavraPreenchida() {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
@@ -184,7 +184,7 @@ function atualizarExibicaoPalavraPreenchida() {
   });
 }
 
-// Função para verificar se a tecla selecionada é uma das letras existente da palavra aleatória definida. //OK
+// Função para verificar se a tecla selecionada é uma das letras existente da palavra aleatória definida.
 function verificarTeclaSelecionada(teclaSelecionada) {
   if (palavraAleatoria.includes(teclaSelecionada)) {
     palavraAleatoria.forEach((letra, index) => {
@@ -209,7 +209,7 @@ function verificarTeclaSelecionada(teclaSelecionada) {
 
 }
 
-// Função para incluir evento de click no teclado virtual que desabilita a tecla selecionada e verifica se a letra é a correta ou não. //OK
+// Função para incluir evento de click no teclado virtual que desabilita a tecla selecionada e verifica se a letra é a correta ou não.
 function incluirEventoClickTeclado(teclado) {
   teclado = teclado.querySelectorAll("button");
 
@@ -223,7 +223,7 @@ function incluirEventoClickTeclado(teclado) {
   });
 }
 
-// Função para gerar o teclado virtual //OK
+// Função para gerar o teclado virtual.
 function gerarTecladoVirtual() {
   const teclado = document.getElementById("keyboard");
   teclado.innerHTML = "";
@@ -270,7 +270,7 @@ function gerarTecladoVirtual() {
   incluirEventoClickTeclado(teclado);
 }
 
-// Função para atualizar a página inicial de acordo com a largura da tela //OK
+// Função para atualizar a página inicial de acordo com a largura da tela.
 function atualizarPaginaInicial(){
   const homePage = document.getElementById("home-page");
 
@@ -283,7 +283,7 @@ function atualizarPaginaInicial(){
   }
 }
 
-// Função para iniciar o jogo
+// Função para iniciar o jogo.
 function iniciarJogo() {
   gerarTemaPalavraAleatoria()
   
@@ -300,11 +300,10 @@ function iniciarJogo() {
   atualizarExibicaoPalavraPreenchida();
 }
 
-// Função para atualizar o conteúdo da página
+// Função para atualizar o conteúdo todo da página
 document.addEventListener("DOMContentLoaded", function() {
   exibirTracosTituloPrincipal();
   
-
   document.getElementById("start-btn").addEventListener("click", function(){
     atualizarPaginaInicial();
     iniciarJogo();
