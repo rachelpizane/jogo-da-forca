@@ -9,7 +9,7 @@ O objetivo deste repositório é aplicar e consolidar funcionalidades aprendidas
 
 ## 2. Status do projeto 🕜
 
-Em andamento 
+Concluído!
 <br>
 
 ## 3. Link 🔗
@@ -17,17 +17,27 @@ Em andamento
 - Live Site URL: [GitHub Page - Jogo da Forca](https://rachelpizane.github.io/jogo-da-forca/)
 <br>
 
-## 4. Screenshot 📸
+## 4. Funcionalidades ⚙️
 
 Em construção 🛠️
 <br>
 
-## 5. Funcionalidades ⚙️
-
-Em construção 🛠️
-<br>
-
-## 6. Tecnologias utilizadas 🔧
+## 5. Tecnologias utilizadas 🔧
  
  Em construção 🛠️
  <br>
+
+ ## 6. Screenshot 📸
+
+<p align="center">
+<img src="img/img_jogo-da-forca_v.mobile.png" alt="Mobile version" width="800">
+</p>
+
+<p align="center">
+<img src="img/img_jogo_da_forca_v.desktop.png" alt="Desktop version" width="800">
+</p>
+
+<p align="center">
+<img src="img/img_jogo_da_forca_v.desktop_2.png" alt="Desktop version 2" width="800">
+</p>
+<br>
