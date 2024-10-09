@@ -67,7 +67,7 @@ main {
   cursor: pointer;
 }
 
-.home-page__start-button:hover, .game-page__restart-button:hover {
+.home-page__start-button:hover, .game-page__restart-button:hover, .game-message__restart-button:hover {
   background-color: var(--hover-color);
 }
 
