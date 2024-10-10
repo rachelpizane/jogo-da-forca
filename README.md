@@ -33,9 +33,8 @@ Concluído!
 </p>
 
 <p align="center">
-<img src="img/img_jogo_da_forca_v.desktop.png" alt="Desktop version" width="800">
+<img src="img/img_jogo_da_forca_v.desktop_1.png" alt="Desktop version" width="800">
 </p>
-
 <p align="center">
 <img src="img/img_jogo_da_forca_v.desktop_2.png" alt="Desktop version 2" width="800">
 </p>
